@@ -243,7 +243,7 @@
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.Location = new System.Drawing.Point(532, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(2, 530);
+            this.label4.Size = new System.Drawing.Size(2, 535);
             this.label4.TabIndex = 19;
             // 
             // Podcastlista
