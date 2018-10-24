@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Projekt_17_Podcast
 {
-    public partial class Form1 : Form
+    public partial class Podcastlista : Form
     {
-        public Form1()
+        public Podcastlista()
         {
             InitializeComponent();
+        }
+
+        private void Podcastlista_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
