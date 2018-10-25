@@ -169,6 +169,7 @@
             this.listView2.Size = new System.Drawing.Size(486, 157);
             this.listView2.TabIndex = 10;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
             // 
             // label1
             // 
@@ -229,6 +230,7 @@
             this.button6.TabIndex = 17;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label3
             // 
