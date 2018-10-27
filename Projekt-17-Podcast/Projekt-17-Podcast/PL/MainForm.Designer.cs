@@ -97,6 +97,11 @@
             // cbUpdFreq
             // 
             this.cbUpdFreq.FormattingEnabled = true;
+            this.cbUpdFreq.Items.AddRange(new object[] {
+            "1 minut",
+            "5 minuter",
+            "10 minuter",
+            "30 minuter"});
             this.cbUpdFreq.Location = new System.Drawing.Point(248, 356);
             this.cbUpdFreq.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbUpdFreq.Name = "cbUpdFreq";
@@ -148,6 +153,7 @@
             this.btnNyPodcast.TabIndex = 7;
             this.btnNyPodcast.Text = "Ny...";
             this.btnNyPodcast.UseVisualStyleBackColor = true;
+            this.btnNyPodcast.Click += new System.EventHandler(this.btnNyPodcast_Click);
             // 
             // btnSparaPodcast
             // 

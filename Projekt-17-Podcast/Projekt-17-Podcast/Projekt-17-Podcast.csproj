@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Avsnitt.cs" />
+    <Compile Include="BLL\AvsnittsLista.cs" />
+    <Compile Include="BLL\HanteraXML.cs" />
+    <Compile Include="BLL\Kategori.cs" />
+    <Compile Include="BLL\Podcast.cs" />
+    <Compile Include="BLL\PodcastLista.cs" />
+    <Compile Include="BLL\Validera.cs" />
     <Compile Include="PL\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +88,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
     <Folder Include="DAL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

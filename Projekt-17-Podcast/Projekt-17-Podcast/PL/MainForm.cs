@@ -10,12 +10,15 @@ using System.Windows.Forms;
 //-------------
 using System.Xml;
 using System.ServiceModel.Syndication;
+using Projekt_17_Podcast.BLL;
 //--------------
 
 namespace Projekt_17_Podcast
 {
     public partial class Podcastlista : Form
     {
+
+
         public Podcastlista()
         {
             InitializeComponent();
@@ -53,6 +56,15 @@ namespace Projekt_17_Podcast
                 }
                 Console.WriteLine(i);
             }
+        }
+
+        private void btnNyPodcast_Click(object sender, EventArgs e)
+        {
+            var url = tbUrl.Text;
+            var updFreq = cbUpdFreq.Text.Split(' ')[0];
+            var kategori = cbKategori.Text;
+
+            HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
         }
         //--------------------------------
 
