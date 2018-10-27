@@ -14,7 +14,5 @@ namespace Projekt_17_Podcast.BLL
         {
             Podcasts = new List<Podcast>();
         }
-
-
     }
 }

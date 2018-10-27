@@ -13,9 +13,14 @@ namespace Projekt_17_Podcast.BLL
         string beskrivning { get; set; }
         int antalAvsnitt { get; set; }
 
-        public Podcast()
+        public Podcast(string pTitel, string aTitel, string beskrivning, int antalavsnitt)
         {
+            podcastTitel = pTitel;
+            avsnittsTitel = aTitel;
+            this.beskrivning = beskrivning;
+            this.antalAvsnitt = antalAvsnitt;
 
+            Console.WriteLine(aTitel);
         }
         
     }
