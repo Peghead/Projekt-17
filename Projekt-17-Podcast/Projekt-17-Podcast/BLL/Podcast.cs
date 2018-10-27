@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    class Podcast
+    public class Podcast
     {
+        string podcastTitel { get; set; }
+        string avsnittsTitel { get; set; }
+        string beskrivning { get; set; }
+        int antalAvsnitt { get; set; }
+
+        public Podcast()
+        {
+
+        }
+        
     }
 }

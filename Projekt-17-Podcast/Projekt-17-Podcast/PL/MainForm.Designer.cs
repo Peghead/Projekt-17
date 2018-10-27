@@ -1,6 +1,6 @@
 ﻿namespace Projekt_17_Podcast
 {
-    partial class Podcastlista
+    partial class PodcastForm
 
     {
         /// <summary>

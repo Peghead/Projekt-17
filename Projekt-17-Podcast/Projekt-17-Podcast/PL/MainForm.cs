@@ -7,19 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//-------------
-using System.Xml;
-using System.ServiceModel.Syndication;
 using Projekt_17_Podcast.BLL;
-//--------------
+using Projekt_17_Podcast.DAL;
 
 namespace Projekt_17_Podcast
 {
-    public partial class Podcastlista : Form
+    public partial class PodcastForm : Form
     {
 
 
-        public Podcastlista()
+        public PodcastForm()
         {
             InitializeComponent();
         }
@@ -31,31 +28,7 @@ namespace Projekt_17_Podcast
 
         private void button6_Click(object sender, EventArgs e)
         {
-            test();
-        }
 
-        //-----------------------------
-        public void test()
-        {
-            string url = "https://cdn.radioplay.se/data/rss/490.xml";
-
-            using (XmlReader reader = XmlReader.Create(url))
-            {
-                SyndicationFeed feed = SyndicationFeed.Load(reader);
-                var mainTitle = feed.Title.Text;
-                int i = 0;
-                
-                Console.WriteLine(mainTitle);
-
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    string title = item.Title.Text;
-                    string summary = (((TextSyndicationContent)item.Summary).Text);
-                    i++;
-                    Console.WriteLine(title + " " + summary);
-                }
-                Console.WriteLine(i);
-            }
         }
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
@@ -66,7 +39,6 @@ namespace Projekt_17_Podcast
 
             HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
         }
-        //--------------------------------
 
     }
 }

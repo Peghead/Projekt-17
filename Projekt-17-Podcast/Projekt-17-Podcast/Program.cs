@@ -16,7 +16,7 @@ namespace Projekt_17_Podcast
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Podcastlista());
+            Application.Run(new PodcastForm());
         }
     }
 }

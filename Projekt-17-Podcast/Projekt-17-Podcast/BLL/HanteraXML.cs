@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekt_17_Podcast.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Projekt_17_Podcast.BLL
         {
             if (Validera.KollaRSS(url))
             {
-                
+                HanteraRssFeed.hamtaRssInfo(url);
             }
         }
     }
