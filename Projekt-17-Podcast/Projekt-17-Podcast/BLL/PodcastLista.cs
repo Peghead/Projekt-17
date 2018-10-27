@@ -18,7 +18,8 @@ namespace Projekt_17_Podcast.BLL
         public static void laggTill(Podcast pod)
         {
             podcastLista.Add(pod);
-            //Fungerar om egenskapen är public...
+
+            //Console.WriteLine Fungerar om egenskapen är public...
             //Console.WriteLine(pod.avsnittsTitel);
         }
 
