@@ -296,7 +296,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Podcastlista";
             this.Text = "Podcastlista";
-            this.Load += new System.EventHandler(this.Podcastlista_Load);
+            this.Load += new System.EventHandler(this.PodcastForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

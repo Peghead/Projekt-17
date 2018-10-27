@@ -8,11 +8,19 @@ namespace Projekt_17_Podcast.BLL
 {
     public class PodcastLista
     {
-        public List<Podcast> Podcasts { get; set; }
+        public static List<Podcast> podcastLista { get; set; }
 
         public PodcastLista()
         {
-            Podcasts = new List<Podcast>();
+            podcastLista = new List<Podcast>();
         }
+
+        public static void laggTill(Podcast pod)
+        {
+            podcastLista.Add(pod);
+            //Fungerar om egenskapen är public...
+            //Console.WriteLine(pod.avsnittsTitel);
+        }
+
     }
 }

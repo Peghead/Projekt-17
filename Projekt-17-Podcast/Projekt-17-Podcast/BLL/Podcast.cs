@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,7 @@ namespace Projekt_17_Podcast.BLL
             this.beskrivning = beskrivning;
             this.antalAvsnitt = antalAvsnitt;
 
-            Console.WriteLine(aTitel);
+            //Console.WriteLine(aTitel);
         }
-        
     }
 }

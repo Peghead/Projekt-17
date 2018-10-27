@@ -25,6 +25,7 @@ namespace Projekt_17_Podcast.DAL
                     string summary = (((TextSyndicationContent)item.Summary).Text);
                     i++;
                     Podcast podcast = new Podcast(mainTitle, title, summary, i);
+                    PodcastLista.laggTill(podcast);
                 }
             }
         }

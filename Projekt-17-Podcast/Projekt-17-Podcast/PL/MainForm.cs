@@ -21,9 +21,9 @@ namespace Projekt_17_Podcast
             InitializeComponent();
         }
 
-        private void Podcastlista_Load(object sender, EventArgs e)
+        private void PodcastForm_Load(object sender, EventArgs e)
         {
-
+            new PodcastLista();
         }
 
         private void button6_Click(object sender, EventArgs e)
