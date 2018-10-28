@@ -24,6 +24,12 @@ namespace Projekt_17_Podcast
         private void PodcastForm_Load(object sender, EventArgs e)
         {
             new PodcastLista();
+
+            DAL.HanteraXML.SkapaLista();
+
+            UpdatePodcastListview();
+
+
         }
 
         //----------------TEST--------------
@@ -49,7 +55,29 @@ namespace Projekt_17_Podcast
             var updFreq = cbUpdFreq.Text.Split(' ')[0];
             var kategori = cbKategori.Text;
 
-            HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
+            BLL.HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
+            DAL.HanteraXML.SparaLista();
+
+            UpdatePodcastListview();
+        }
+
+        private void UpdatePodcastListview()
+        {
+            List<Podcast> lista = PodcastLista.hamtaLista();
+            lvPodcasts.Items.Clear();
+            foreach(var pod in lista)
+            {
+                var list = new ListViewItem(new[]
+                {
+                    pod.antalAvsnitt.ToString(),
+                    pod.podcastTitel,
+                    pod.avsnittsTitel,
+                    pod.beskrivning
+                    
+                });
+                
+                lvPodcasts.Items.Add(list);
+            }
         }
 
     }

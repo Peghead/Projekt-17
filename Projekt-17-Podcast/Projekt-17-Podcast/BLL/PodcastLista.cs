@@ -19,6 +19,7 @@ namespace Projekt_17_Podcast.BLL
         {
             podcastLista.Add(pod);
 
+
             //Console.WriteLine Fungerar om egenskapen är public...
             //Console.WriteLine(pod.avsnittsTitel);
         }

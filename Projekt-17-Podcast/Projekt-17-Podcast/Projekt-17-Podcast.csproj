@@ -55,6 +55,7 @@
     <Compile Include="BLL\PodcastLista.cs" />
     <Compile Include="BLL\Validera.cs" />
     <Compile Include="DAL\HanteraRssFeed.cs" />
+    <Compile Include="DAL\HanteraXML.cs" />
     <Compile Include="PL\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
