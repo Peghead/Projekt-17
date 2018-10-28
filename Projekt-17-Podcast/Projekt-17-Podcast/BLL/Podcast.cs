@@ -9,10 +9,10 @@ namespace Projekt_17_Podcast.BLL
 {
     public class Podcast
     {
-        string podcastTitel { get; set; }
-        string avsnittsTitel { get; set; }
-        string beskrivning { get; set; }
-        int antalAvsnitt { get; set; }
+        public string podcastTitel { get; set; }
+        public string avsnittsTitel { get; set; }
+        public string beskrivning { get; set; }
+        public int antalAvsnitt { get; set; }
 
         public Podcast(string pTitel, string aTitel, string beskrivning, int antalavsnitt)
         {
@@ -23,5 +23,7 @@ namespace Projekt_17_Podcast.BLL
 
             //Console.WriteLine(aTitel);
         }
+
+
     }
 }

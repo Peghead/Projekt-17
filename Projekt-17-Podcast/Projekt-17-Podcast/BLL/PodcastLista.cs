@@ -23,5 +23,12 @@ namespace Projekt_17_Podcast.BLL
             //Console.WriteLine(pod.avsnittsTitel);
         }
 
+        public static List<Podcast> hamtaLista()
+        {
+            return podcastLista;
+        }
+
+
+
     }
 }

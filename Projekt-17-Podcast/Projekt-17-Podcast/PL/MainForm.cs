@@ -26,10 +26,22 @@ namespace Projekt_17_Podcast
             new PodcastLista();
         }
 
+        //----------------TEST--------------
         private void button6_Click(object sender, EventArgs e)
         {
-
+            getList();
         }
+
+        public void getList()
+        {
+            List<Podcast> calledList = PodcastLista.hamtaLista();
+            foreach (var p in calledList)
+            {
+               var test = p.avsnittsTitel;
+                Console.WriteLine(test);
+            }
+        }
+        //----------------TEST----------------
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
