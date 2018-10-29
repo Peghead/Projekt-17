@@ -25,20 +25,21 @@ namespace Projekt_17_Podcast.DAL
 
         public static void SkapaLista()
         {
-            XDocument xdoc = XDocument.Load("podcasts.txt");
-            xdoc.Descendants("Podcast").Select(p => new
-            {
-                podcastTitel = p.Element("podcastTitel").Value,
-                avsnittsTitel = p.Element("avsnittsTitel").Value,
-                beskrivning = p.Element("beskrivning").Value,
-                antalAvsnitt = Convert.ToInt32(p.Element("antalAvsnitt").Value)
+            if(File.Exists("podcasts.txt")) { 
+                XDocument xdoc = XDocument.Load("podcasts.txt");
+                xdoc.Descendants("Podcast").Select(p => new
+                {
+                    podcastTitel = p.Element("podcastTitel").Value,
+                    avsnittsTitel = p.Element("avsnittsTitel").Value,
+                    beskrivning = p.Element("beskrivning").Value,
+                    antalAvsnitt = Convert.ToInt32(p.Element("antalAvsnitt").Value)
 
-            }).ToList().ForEach(p =>
-            {
-                Podcast podcast = new Podcast(p.podcastTitel, p.avsnittsTitel, p.beskrivning, p.antalAvsnitt);
-                PodcastLista.laggTill(podcast);
-            });
-
+                }).ToList().ForEach(p =>
+                {
+                    Podcast podcast = new Podcast(p.podcastTitel, p.avsnittsTitel, p.beskrivning, p.antalAvsnitt);
+                    PodcastLista.laggTill(podcast);
+                });
+            }
         }
     }
 }
