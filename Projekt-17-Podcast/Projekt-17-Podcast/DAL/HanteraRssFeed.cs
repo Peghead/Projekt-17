@@ -10,8 +10,27 @@ using Projekt_17_Podcast.BLL;
 namespace Projekt_17_Podcast.DAL
 {
     public class HanteraRssFeed
-    { 
-        public static void hamtaRssInfo(string url)
+    {
+        //public static void hamtaRssInfo(string url)
+        //{
+        //    using (XmlReader reader = XmlReader.Create(url))
+        //    {
+        //        SyndicationFeed feed = SyndicationFeed.Load(reader);
+        //        var mainTitle = feed.Title.Text;
+        //        int i = 0;
+
+        //        foreach (SyndicationItem item in feed.Items)
+        //        {
+        //            string title = item.Title.Text;
+        //            string summary = (((TextSyndicationContent)item.Summary).Text);
+        //            i++;
+        //            Podcast podcast = new Podcast(mainTitle, title, summary, i);
+        //            PodcastLista.laggTill(podcast);
+        //        }
+        //    }
+        //}
+
+        public static void hamtaRssInfo(string url, int freq, string kategori)
         {
             using (XmlReader reader = XmlReader.Create(url))
             {
@@ -23,10 +42,13 @@ namespace Projekt_17_Podcast.DAL
                 {
                     string title = item.Title.Text;
                     string summary = (((TextSyndicationContent)item.Summary).Text);
+                    Avsnitt avsnitt = new Avsnitt(mainTitle, title, summary);
+                    AvsnittsLista.laggTill(avsnitt);
                     i++;
-                    Podcast podcast = new Podcast(mainTitle, title, summary, i);
-                    PodcastLista.laggTill(podcast);
+
                 }
+                Podcast podcast = new Podcast(mainTitle, freq, kategori, i);
+                PodcastLista.laggTill(podcast);
             }
         }
     }

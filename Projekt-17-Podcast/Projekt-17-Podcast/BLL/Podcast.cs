@@ -11,16 +11,16 @@ namespace Projekt_17_Podcast.BLL
     {
         
         public string podcastTitel { get; set; }
-        public string avsnittsTitel { get; set; }
-        public string beskrivning { get; set; }
+        public int uppdateringsFrekvens { get; set; }
+        public string kategori { get; set; }
         public int antalAvsnitt { get; set; }
 
-        public Podcast(string pTitel, string aTitel, string beskrivning, int antalavsnitt)
+        public Podcast(string pTitel, int uFreq, string kategori, int antalavsnitt)
         {
             podcastTitel = pTitel;
-            avsnittsTitel = aTitel;
-            this.beskrivning = beskrivning;
-            this.antalAvsnitt = antalAvsnitt;
+            uppdateringsFrekvens = uFreq;
+            this.kategori = kategori;
+            this.antalAvsnitt = antalavsnitt;
 
             //Console.WriteLine(aTitel);
         }

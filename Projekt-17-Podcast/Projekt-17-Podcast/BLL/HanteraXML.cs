@@ -9,11 +9,11 @@ namespace Projekt_17_Podcast.BLL
 {
     class HanteraXML
     {
-        public static void LaggTillNyPodcast(string url, string freq, string kategori)
+        public static void LaggTillNyPodcast(string url, int freq, string kategori)
         {
             if (Validera.KollaRSS(url))
             {
-                HanteraRssFeed.hamtaRssInfo(url);
+                HanteraRssFeed.hamtaRssInfo(url, freq, kategori);
             }
         }
     }

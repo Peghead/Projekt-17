@@ -31,9 +31,9 @@
         {
             this.lvPodcasts = new System.Windows.Forms.ListView();
             this.Avsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.cbUpdFreq = new System.Windows.Forms.ComboBox();
             this.cbKategori = new System.Windows.Forms.ComboBox();
@@ -53,42 +53,47 @@
             this.btnTabortKategori = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvPodcasts
             // 
             this.lvPodcasts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Namn,
+            this.Kategori,
             this.Avsnitt,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.lvPodcasts.Location = new System.Drawing.Point(14, 15);
+            this.Frekvens});
+            this.lvPodcasts.Location = new System.Drawing.Point(18, 15);
             this.lvPodcasts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvPodcasts.Name = "lvPodcasts";
             this.lvPodcasts.Size = new System.Drawing.Size(546, 290);
             this.lvPodcasts.TabIndex = 0;
             this.lvPodcasts.UseCompatibleStateImageBehavior = false;
             this.lvPodcasts.View = System.Windows.Forms.View.Details;
+            this.lvPodcasts.ItemActivate += new System.EventHandler(this.lvPodcasts_ItemActivate);
             // 
             // Avsnitt
             // 
             this.Avsnitt.Text = "Avsnitt";
             // 
-            // columnHeader2
+            // Namn
             // 
-            this.columnHeader2.Text = "Namn";
+            this.Namn.Text = "Namn";
+            this.Namn.Width = 100;
             // 
-            // columnHeader3
+            // Frekvens
             // 
-            this.columnHeader3.Text = "Frekvens";
+            this.Frekvens.DisplayIndex = 2;
+            this.Frekvens.Text = "Frekvens";
             // 
-            // columnHeader4
+            // Kategori
             // 
-            this.columnHeader4.Text = "Kategori";
+            this.Kategori.Text = "Kategori";
             // 
             // tbUrl
             // 
-            this.tbUrl.Location = new System.Drawing.Point(14, 359);
+            this.tbUrl.Location = new System.Drawing.Point(14, 356);
             this.tbUrl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbUrl.Name = "tbUrl";
             this.tbUrl.Size = new System.Drawing.Size(218, 26);
@@ -177,6 +182,9 @@
             // 
             // lvAvsnitt
             // 
+            this.lvAvsnitt.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
             this.lvAvsnitt.Location = new System.Drawing.Point(14, 486);
             this.lvAvsnitt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvAvsnitt.Name = "lvAvsnitt";
@@ -267,7 +275,17 @@
             this.label4.Size = new System.Drawing.Size(2, 669);
             this.label4.TabIndex = 19;
             // 
-            // Podcastlista
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Podcast";
+            this.columnHeader1.Width = 132;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Titel";
+            this.columnHeader2.Width = 200;
+            // 
+            // PodcastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -294,7 +312,7 @@
             this.Controls.Add(this.lvPodcasts);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Podcastlista";
+            this.Name = "PodcastForm";
             this.Text = "Podcastlista";
             this.Load += new System.EventHandler(this.PodcastForm_Load);
             this.ResumeLayout(false);
@@ -306,9 +324,9 @@
 
         private System.Windows.Forms.ListView lvPodcasts;
         private System.Windows.Forms.ColumnHeader Avsnitt;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader Namn;
+        private System.Windows.Forms.ColumnHeader Frekvens;
+        private System.Windows.Forms.ColumnHeader Kategori;
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.ComboBox cbUpdFreq;
         private System.Windows.Forms.ComboBox cbKategori;
@@ -328,6 +346,8 @@
         private System.Windows.Forms.Button btnTabortKategori;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
 

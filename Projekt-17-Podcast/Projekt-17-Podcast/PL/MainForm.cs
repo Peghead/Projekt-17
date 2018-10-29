@@ -24,11 +24,12 @@ namespace Projekt_17_Podcast
         private void PodcastForm_Load(object sender, EventArgs e)
         {
             new PodcastLista();
+            new AvsnittsLista();
 
-            DAL.HanteraXML.SkapaLista();
+            DAL.HanteraXML.SkapaListaPodcast();
+            DAL.HanteraXML.SkapaListaAvsnitt();
 
             UpdatePodcastListview();
-
 
         }
 
@@ -43,7 +44,7 @@ namespace Projekt_17_Podcast
             List<Podcast> calledList = PodcastLista.hamtaLista();
             foreach (var p in calledList)
             {
-               var test = p.avsnittsTitel;
+               var test = p.podcastTitel;
                 Console.WriteLine(test);
             }
         }
@@ -52,11 +53,12 @@ namespace Projekt_17_Podcast
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
             var url = tbUrl.Text;
-            var updFreq = cbUpdFreq.Text.Split(' ')[0];
+            int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             var kategori = cbKategori.Text;
 
             BLL.HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
-            DAL.HanteraXML.SparaLista();
+            DAL.HanteraXML.SparaListaPodcast();
+            DAL.HanteraXML.SparaListaAvsnitt();
 
             UpdatePodcastListview();
         }
@@ -69,10 +71,12 @@ namespace Projekt_17_Podcast
             {
                 var list = new ListViewItem(new[]
                 {
-                    pod.antalAvsnitt.ToString(),
+                    
                     pod.podcastTitel,
-                    pod.avsnittsTitel,
-                    pod.beskrivning
+                    pod.kategori,
+                    pod.antalAvsnitt.ToString(),
+                    pod.uppdateringsFrekvens.ToString()
+                    
                     
                 });
                 
@@ -80,5 +84,32 @@ namespace Projekt_17_Podcast
             }
         }
 
+        private void UpdateAvsnittListview(string podcastTitel)
+        {
+            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.podcastTitel == podcastTitel).ToList();
+            lvAvsnitt.Items.Clear();
+            foreach (var avsnitt in lista)
+            {
+                
+                var list = new ListViewItem(new[]
+                {
+                    podcastTitel,
+                    avsnitt.avsnittTitel
+                });
+
+                lvAvsnitt.Items.Add(list);
+            }
+        }
+
+        private void lvPodcasts_ItemActivate(object sender, EventArgs e)
+        {
+            var index = this.lvPodcasts.SelectedIndices[0];
+
+            string firstValue = this.lvPodcasts.Items[index].SubItems[0].Text;
+
+            Console.WriteLine(firstValue);
+            UpdateAvsnittListview(firstValue);
+
+        }
     }
 }
