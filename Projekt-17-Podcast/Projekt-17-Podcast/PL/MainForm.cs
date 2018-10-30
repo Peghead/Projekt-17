@@ -83,7 +83,6 @@ namespace Projekt_17_Podcast
                 
                 var list = new ListViewItem(new[]
                 {
-                    podcastTitel,
                     avsnitt.avsnittTitel
                 });
 
