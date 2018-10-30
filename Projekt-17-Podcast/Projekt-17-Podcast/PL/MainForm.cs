@@ -90,15 +90,37 @@ namespace Projekt_17_Podcast
             }
         }
 
+        private void UpdatertbBeskrivning(string avsnitt)
+        {
+            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.avsnittTitel == avsnitt).ToList();
+            
+            foreach (var avs in lista)
+            {
+                var titel = avs.avsnittTitel;
+                var beskrivning = avs.beskrivning;
+                string nl = "\r\n";
+                rtbBeskrivning.Text = titel + nl + beskrivning;
+            }
+        }
+
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
         {
             var index = this.lvPodcasts.SelectedIndices[0];
 
             string firstValue = this.lvPodcasts.Items[index].SubItems[0].Text;
 
-            Console.WriteLine(firstValue);
             UpdateAvsnittListview(firstValue);
 
+        }
+
+        private void lvAvsnitt_ItemActivate(object sender, EventArgs e)
+        {
+            var index = this.lvAvsnitt.SelectedIndices[0];
+
+            string firstValue = this.lvAvsnitt.Items[index].SubItems[0].Text;
+
+            Console.WriteLine(firstValue);
+            UpdatertbBeskrivning(firstValue);
         }
     }
 }

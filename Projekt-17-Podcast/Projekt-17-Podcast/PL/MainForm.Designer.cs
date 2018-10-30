@@ -54,6 +54,7 @@
             this.btnTabortKategori = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.rtbBeskrivning = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lvPodcasts
@@ -189,6 +190,7 @@
             this.lvAvsnitt.TabIndex = 10;
             this.lvAvsnitt.UseCompatibleStateImageBehavior = false;
             this.lvAvsnitt.View = System.Windows.Forms.View.Details;
+            this.lvAvsnitt.ItemActivate += new System.EventHandler(this.lvAvsnitt_ItemActivate);
             // 
             // columnHeader2
             // 
@@ -277,11 +279,20 @@
             this.label4.Size = new System.Drawing.Size(2, 669);
             this.label4.TabIndex = 19;
             // 
+            // rtbBeskrivning
+            // 
+            this.rtbBeskrivning.Location = new System.Drawing.Point(636, 439);
+            this.rtbBeskrivning.Name = "rtbBeskrivning";
+            this.rtbBeskrivning.Size = new System.Drawing.Size(420, 242);
+            this.rtbBeskrivning.TabIndex = 20;
+            this.rtbBeskrivning.Text = "";
+            // 
             // PodcastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 698);
+            this.Controls.Add(this.rtbBeskrivning);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnTabortKategori);
@@ -339,6 +350,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.RichTextBox rtbBeskrivning;
     }
 }
 
