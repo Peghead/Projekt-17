@@ -25,6 +25,7 @@ namespace Projekt_17_Podcast
         {
             new PodcastLista();
             new AvsnittsLista();
+            new KategoriLista();
 
             DAL.HanteraXML.SkapaListaPodcast();
             DAL.HanteraXML.SkapaListaAvsnitt();
@@ -103,6 +104,24 @@ namespace Projekt_17_Podcast
             }
         }
 
+        public void UpdatetbKategori(List<Kategori> lista)
+        {
+            lbKategorier.Items.Clear();
+            foreach(var kat in lista)
+            {
+                lbKategorier.Items.Add(kat.kategoriTitel);
+            }
+        }
+
+        public void UpdatecbKategori(List<Kategori> lista)
+        {
+            cbKategori.Items.Clear();
+            foreach (var kat in lista)
+            {
+                cbKategori.Items.Add(kat.kategoriTitel);
+            }
+        }
+
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
         {
             var index = this.lvPodcasts.SelectedIndices[0];
@@ -122,5 +141,18 @@ namespace Projekt_17_Podcast
             Console.WriteLine(firstValue);
             UpdatertbBeskrivning(firstValue);
         }
+
+        private void btnNyKategori_Click(object sender, EventArgs e)
+        {
+                if(!string.IsNullOrEmpty(tbKategori.Text)) { 
+                var tbKategoriText = tbKategori.Text;
+                Kategori kategori = new Kategori(tbKategoriText);
+                KategoriLista.laggTill(kategori);
+                UpdatecbKategori(KategoriLista.hamtaLista());
+                UpdatetbKategori(KategoriLista.hamtaLista());
+            }
+        }
+
+
     }
 }

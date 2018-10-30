@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    class Kategori
+    public class Kategori
     {
+        public string kategoriTitel { get; set; }
+
+        public Kategori(string kategori)
+        {
+            kategoriTitel = kategori;
+        }
+
+        public string getKategori()
+        {
+            return kategoriTitel;
+        }
+
     }
 }

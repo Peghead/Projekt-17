@@ -46,7 +46,6 @@
             this.lvAvsnitt = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-            this.lvKategorier = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
             this.tbKategori = new System.Windows.Forms.TextBox();
             this.btnNyKategori = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rtbBeskrivning = new System.Windows.Forms.RichTextBox();
+            this.lbKategorier = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lvPodcasts
@@ -206,15 +206,6 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Avsnitt";
             // 
-            // lvKategorier
-            // 
-            this.lvKategorier.Location = new System.Drawing.Point(636, 55);
-            this.lvKategorier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lvKategorier.Name = "lvKategorier";
-            this.lvKategorier.Size = new System.Drawing.Size(420, 250);
-            this.lvKategorier.TabIndex = 12;
-            this.lvKategorier.UseCompatibleStateImageBehavior = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -241,6 +232,7 @@
             this.btnNyKategori.TabIndex = 15;
             this.btnNyKategori.Text = "Ny...";
             this.btnNyKategori.UseVisualStyleBackColor = true;
+            this.btnNyKategori.Click += new System.EventHandler(this.btnNyKategori_Click);
             // 
             // btnSparaKategori
             // 
@@ -287,11 +279,21 @@
             this.rtbBeskrivning.TabIndex = 20;
             this.rtbBeskrivning.Text = "";
             // 
+            // lbKategorier
+            // 
+            this.lbKategorier.FormattingEnabled = true;
+            this.lbKategorier.ItemHeight = 20;
+            this.lbKategorier.Location = new System.Drawing.Point(636, 39);
+            this.lbKategorier.Name = "lbKategorier";
+            this.lbKategorier.Size = new System.Drawing.Size(420, 264);
+            this.lbKategorier.TabIndex = 21;
+            // 
             // PodcastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 698);
+            this.Controls.Add(this.lbKategorier);
             this.Controls.Add(this.rtbBeskrivning);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -300,7 +302,6 @@
             this.Controls.Add(this.btnNyKategori);
             this.Controls.Add(this.tbKategori);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lvKategorier);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvAvsnitt);
             this.Controls.Add(this.btnTabortPodcast);
@@ -341,7 +342,6 @@
         private System.Windows.Forms.Button btnTabortPodcast;
         private System.Windows.Forms.ListView lvAvsnitt;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView lvKategorier;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbKategori;
         private System.Windows.Forms.Button btnNyKategori;
@@ -351,6 +351,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.RichTextBox rtbBeskrivning;
+        private System.Windows.Forms.ListBox lbKategorier;
     }
 }
 
