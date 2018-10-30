@@ -18,10 +18,6 @@ namespace Projekt_17_Podcast.BLL
         public static void laggTill(Podcast pod)
         {
             podcastLista.Add(pod);
-
-
-            //Console.WriteLine Fungerar om egenskapen är public...
-            //Console.WriteLine(pod.avsnittsTitel);
         }
 
         public static List<Podcast> hamtaLista()

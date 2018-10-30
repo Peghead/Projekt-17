@@ -33,30 +33,20 @@ namespace Projekt_17_Podcast
 
         }
 
-        //----------------TEST--------------
+
         private void button6_Click(object sender, EventArgs e)
         {
-            getList();
+
         }
 
-        public void getList()
-        {
-            List<Podcast> calledList = PodcastLista.hamtaLista();
-            foreach (var p in calledList)
-            {
-               var test = p.podcastTitel;
-                Console.WriteLine(test);
-            }
-        }
-        //----------------TEST----------------
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-            var url = tbUrl.Text;
+            var url = tbUrl.Text;   
             int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             var kategori = cbKategori.Text;
 
-            BLL.HanteraXML.LaggTillNyPodcast(url, updFreq, kategori);
+            BLL.LaggTillPodcast.LaggTillNyPodcast(url, updFreq, kategori);
             DAL.HanteraXML.SparaListaPodcast();
             DAL.HanteraXML.SparaListaAvsnitt();
 
@@ -75,7 +65,7 @@ namespace Projekt_17_Podcast
                     pod.podcastTitel,
                     pod.kategori,
                     pod.antalAvsnitt.ToString(),
-                    pod.uppdateringsFrekvens.ToString()
+                    pod.uppdateringsFrekvens.ToString() + " minuter"
                     
                     
                 });

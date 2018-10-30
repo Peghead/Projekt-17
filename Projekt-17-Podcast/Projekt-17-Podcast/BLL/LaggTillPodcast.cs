@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    class HanteraXML
+    class LaggTillPodcast
     {
         public static void LaggTillNyPodcast(string url, int freq, string kategori)
         {

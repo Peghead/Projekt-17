@@ -21,8 +21,6 @@ namespace Projekt_17_Podcast.BLL
             uppdateringsFrekvens = uFreq;
             this.kategori = kategori;
             this.antalAvsnitt = antalavsnitt;
-
-            //Console.WriteLine(aTitel);
         }
         public Podcast()
         {

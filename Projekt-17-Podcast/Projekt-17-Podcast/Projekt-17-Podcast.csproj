@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="BLL\Avsnitt.cs" />
     <Compile Include="BLL\AvsnittsLista.cs" />
-    <Compile Include="BLL\HanteraXML.cs" />
+    <Compile Include="BLL\LaggTillPodcast.cs" />
     <Compile Include="BLL\Kategori.cs" />
     <Compile Include="BLL\Podcast.cs" />
     <Compile Include="BLL\PodcastLista.cs" />

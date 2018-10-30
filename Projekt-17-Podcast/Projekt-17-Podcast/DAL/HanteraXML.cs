@@ -42,7 +42,7 @@ namespace Projekt_17_Podcast.DAL
                     kategori = p.Element("kategori").Value,
                     antalAvsnitt = Convert.ToInt32(p.Element("antalAvsnitt").Value)
 
-                }).ToList().ForEach(p =>
+                }).ToList().ForEach(p => 
                 {
                     Podcast podcast = new Podcast(p.podcastTitel, p.uppdateringsFrekvens, p.kategori, p.antalAvsnitt);
                     PodcastLista.laggTill(podcast);
