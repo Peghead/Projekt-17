@@ -17,6 +17,10 @@ namespace Projekt_17_Podcast.DAL
 
         public static void SparaListaPodcast()
         {
+            if (File.Exists("podcasts.txt"))
+            {
+                File.Delete("podcasts.txt");
+            }
             Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\podcasts.txt");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<Podcast>));
             xmlSer.Serialize(stream, PodcastLista.hamtaLista());
@@ -25,14 +29,23 @@ namespace Projekt_17_Podcast.DAL
 
         public static void SparaListaAvsnitt()
         {
+            if (File.Exists("avsnitt.txt"))
+            {
+                File.Delete("avsnitt.txt");
+            }
             Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\avsnitt.txt");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<Avsnitt>));
             xmlSer.Serialize(stream, AvsnittsLista.hamtaLista());
             stream.Close();
+            
         }
 
         public static void SparaListaKategori()
         {
+            if (File.Exists("kategorier.txt"))
+            {
+                File.Delete("kategorier.txt");
+            }
             Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\kategorier.txt");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<Kategori>));
             xmlSer.Serialize(stream, KategoriLista.hamtaLista());

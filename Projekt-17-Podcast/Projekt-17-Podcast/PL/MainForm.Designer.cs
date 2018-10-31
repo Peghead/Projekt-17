@@ -256,7 +256,7 @@
             this.btnTabortKategori.TabIndex = 17;
             this.btnTabortKategori.Text = "Ta bort";
             this.btnTabortKategori.UseVisualStyleBackColor = true;
-            this.btnTabortKategori.Click += new System.EventHandler(this.button6_Click);
+            this.btnTabortKategori.Click += new System.EventHandler(this.btnTabortKategori_Click);
             // 
             // label3
             // 
@@ -323,6 +323,7 @@
             this.Name = "PodcastForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Podcastlista";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PodcastForm_FormClosing);
             this.Load += new System.EventHandler(this.PodcastForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

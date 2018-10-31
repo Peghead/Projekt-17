@@ -36,12 +36,6 @@ namespace Projekt_17_Podcast
         }
 
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
             var url = tbUrl.Text;   
@@ -51,8 +45,8 @@ namespace Projekt_17_Podcast
 
             BLL.LaggTillPodcast.LaggTillNyPodcast(url, updFreq, kategori);
             BLL.FrekvensTimer.Start(updFreqTillMinuter);
-            DAL.HanteraXML.SparaListaPodcast();
-            DAL.HanteraXML.SparaListaAvsnitt();
+            //DAL.HanteraXML.SparaListaPodcast();
+            //DAL.HanteraXML.SparaListaAvsnitt();
 
             UpdatePodcastListview();
         }
@@ -129,7 +123,7 @@ namespace Projekt_17_Podcast
             }
             UpdatecbKategori();
             UpdatetbKategori();
-            DAL.HanteraXML.SparaListaKategori();
+            //DAL.HanteraXML.SparaListaKategori();
         }
 
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
@@ -170,7 +164,7 @@ namespace Projekt_17_Podcast
             KategoriLista.laggTill(kategori);
             UpdatecbKategori();
             UpdatetbKategori();
-            DAL.HanteraXML.SparaListaKategori();
+            //DAL.HanteraXML.SparaListaKategori();
         }
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,6 +177,26 @@ namespace Projekt_17_Podcast
             var sparaKategori = tbKategori.Text;
 
             SparaKategori(sparaKategori);
+            //HanteraXML.SparaListaKategori();
+        }
+
+        private void btnTabortKategori_Click(object sender, EventArgs e)
+        {
+            var kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+            int i;
+            List<Kategori> lista = KategoriLista.hamtaLista();
+            i = lista.FindIndex(a => a.getKategori().Equals(kategori));
+            lista.RemoveAt(i);
+            UpdatecbKategori();
+            UpdatetbKategori();
+            //HanteraXML.SparaListaKategori();
+        }
+
+        private void PodcastForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            HanteraXML.SparaListaKategori();
+            HanteraXML.SparaListaAvsnitt();
+            HanteraXML.SparaListaPodcast();
         }
     }
 }
