@@ -14,8 +14,6 @@ namespace Projekt_17_Podcast
 {
     public partial class PodcastForm : Form
     {
-
-
         public PodcastForm()
         {
             InitializeComponent();
@@ -29,8 +27,11 @@ namespace Projekt_17_Podcast
 
             DAL.HanteraXML.SkapaListaPodcast();
             DAL.HanteraXML.SkapaListaAvsnitt();
+            DAL.HanteraXML.SkapaListaKategori();
 
             UpdatePodcastListview();
+            UpdatetbKategori();
+            UpdatecbKategori();
 
         }
 
@@ -62,15 +63,11 @@ namespace Projekt_17_Podcast
             {
                 var list = new ListViewItem(new[]
                 {
-                    
                     pod.podcastTitel,
                     pod.kategori,
                     pod.antalAvsnitt.ToString(),
                     pod.uppdateringsFrekvens.ToString() + " minuter"
-                    
-                    
                 });
-                
                 lvPodcasts.Items.Add(list);
             }
         }
@@ -81,12 +78,10 @@ namespace Projekt_17_Podcast
             lvAvsnitt.Items.Clear();
             foreach (var avsnitt in lista)
             {
-                
                 var list = new ListViewItem(new[]
                 {
                     avsnitt.avsnittTitel
                 });
-
                 lvAvsnitt.Items.Add(list);
             }
         }
@@ -104,19 +99,19 @@ namespace Projekt_17_Podcast
             }
         }
 
-        public void UpdatetbKategori(List<Kategori> lista)
+        public void UpdatetbKategori()
         {
             lbKategorier.Items.Clear();
-            foreach(var kat in lista)
+            foreach(var kat in KategoriLista.hamtaLista())
             {
                 lbKategorier.Items.Add(kat.kategoriTitel);
             }
         }
 
-        public void UpdatecbKategori(List<Kategori> lista)
+        public void UpdatecbKategori()
         {
             cbKategori.Items.Clear();
-            foreach (var kat in lista)
+            foreach (var kat in KategoriLista.hamtaLista())
             {
                 cbKategori.Items.Add(kat.kategoriTitel);
             }
@@ -126,9 +121,9 @@ namespace Projekt_17_Podcast
         {
             var index = this.lvPodcasts.SelectedIndices[0];
 
-            string firstValue = this.lvPodcasts.Items[index].SubItems[0].Text;
+            string avsnittsTitel = this.lvPodcasts.Items[index].SubItems[0].Text;
 
-            UpdateAvsnittListview(firstValue);
+            UpdateAvsnittListview(avsnittsTitel);
 
         }
 
@@ -136,21 +131,31 @@ namespace Projekt_17_Podcast
         {
             var index = this.lvAvsnitt.SelectedIndices[0];
 
-            string firstValue = this.lvAvsnitt.Items[index].SubItems[0].Text;
+            string avsnittsTitel = this.lvAvsnitt.Items[index].SubItems[0].Text;
 
-            Console.WriteLine(firstValue);
-            UpdatertbBeskrivning(firstValue);
+            Console.WriteLine(avsnittsTitel);
+            UpdatertbBeskrivning(avsnittsTitel);
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-                if(!string.IsNullOrEmpty(tbKategori.Text)) { 
-                var tbKategoriText = tbKategori.Text;
-                Kategori kategori = new Kategori(tbKategoriText);
-                KategoriLista.laggTill(kategori);
-                UpdatecbKategori(KategoriLista.hamtaLista());
-                UpdatetbKategori(KategoriLista.hamtaLista());
+            var tbKategoriText = tbKategori.Text;
+            if(string.IsNullOrEmpty(tbKategoriText)) { 
+                System.Windows.Forms.MessageBox.Show("Textfältet får ej vara tomt");
+                return;
             }
+            if (!Validera.KollaKategori(tbKategoriText))
+            {
+                System.Windows.Forms.MessageBox.Show(tbKategoriText + 
+                    " finns redan");
+                return;
+            }
+            
+            Kategori kategori = new Kategori(tbKategoriText);
+            KategoriLista.laggTill(kategori);
+            UpdatecbKategori();
+            UpdatetbKategori();
+            DAL.HanteraXML.SparaListaKategori();
         }
 
 

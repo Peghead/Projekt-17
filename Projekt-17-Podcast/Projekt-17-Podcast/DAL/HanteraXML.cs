@@ -31,6 +31,14 @@ namespace Projekt_17_Podcast.DAL
             stream.Close();
         }
 
+        public static void SparaListaKategori()
+        {
+            Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\kategorier.txt");
+            XmlSerializer xmlSer = new XmlSerializer(typeof(List<Kategori>));
+            xmlSer.Serialize(stream, KategoriLista.hamtaLista());
+            stream.Close();
+        }
+
         public static void SkapaListaPodcast()
         {
             if(File.Exists("podcasts.txt")) { 
@@ -65,6 +73,23 @@ namespace Projekt_17_Podcast.DAL
                 {
                     Avsnitt avsnitt = new Avsnitt(p.podcastTitel, p.avsnittTitel, p.beskrivning);
                     AvsnittsLista.laggTill(avsnitt);
+                });
+            }
+        }
+
+        public static void SkapaListaKategori()
+        {
+            if (File.Exists("kategorier.txt"))
+            {
+                XDocument xdoc = XDocument.Load("kategorier.txt");
+                xdoc.Descendants("Kategori").Select(p => new
+                {
+                    kategoriTitel = p.Element("kategoriTitel").Value,
+
+                }).ToList().ForEach(p =>
+                {
+                    Kategori kategori = new Kategori(p.kategoriTitel);
+                    KategoriLista.laggTill(kategori);
                 });
             }
         }

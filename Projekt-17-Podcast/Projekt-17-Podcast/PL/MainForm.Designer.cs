@@ -100,6 +100,7 @@
             // 
             // cbUpdFreq
             // 
+            this.cbUpdFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUpdFreq.FormattingEnabled = true;
             this.cbUpdFreq.Items.AddRange(new object[] {
             "1 minut",
@@ -114,6 +115,7 @@
             // 
             // cbKategori
             // 
+            this.cbKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbKategori.FormattingEnabled = true;
             this.cbKategori.Location = new System.Drawing.Point(424, 356);
             this.cbKategori.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -317,6 +319,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PodcastForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Podcastlista";
             this.Load += new System.EventHandler(this.PodcastForm_Load);
             this.ResumeLayout(false);

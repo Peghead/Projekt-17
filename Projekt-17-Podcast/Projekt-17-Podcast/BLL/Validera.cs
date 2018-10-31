@@ -25,5 +25,18 @@ namespace Projekt_17_Podcast.BLL
                 return false;
             }
         }
+
+        public static bool KollaKategori(string kategori)
+        {
+            var lista = KategoriLista.hamtaLista();
+            foreach(var kat in lista)
+            {
+                if(kat.kategoriTitel.Equals(kategori))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

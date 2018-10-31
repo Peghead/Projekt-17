@@ -14,6 +14,10 @@ namespace Projekt_17_Podcast.BLL
         {
             kategoriTitel = kategori;
         }
+        public Kategori()
+        {
+
+        }
 
         public string getKategori()
         {

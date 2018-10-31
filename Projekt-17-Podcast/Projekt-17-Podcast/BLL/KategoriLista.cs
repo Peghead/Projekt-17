@@ -8,7 +8,7 @@ namespace Projekt_17_Podcast.BLL
 {
     public class KategoriLista
     {
-        public static List<Kategori> kategoriLista { get; set; }
+        private static List<Kategori> kategoriLista { get; set; }
 
         public KategoriLista()
         {
