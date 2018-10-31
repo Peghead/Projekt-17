@@ -106,7 +106,7 @@ namespace Projekt_17_Podcast
             lbKategorier.Items.Clear();
             foreach(var kat in KategoriLista.hamtaLista())
             {
-                lbKategorier.Items.Add(kat.kategoriTitel);
+                lbKategorier.Items.Add(kat.getKategori());
             }
         }
 
@@ -115,8 +115,21 @@ namespace Projekt_17_Podcast
             cbKategori.Items.Clear();
             foreach (var kat in KategoriLista.hamtaLista())
             {
-                cbKategori.Items.Add(kat.kategoriTitel);
+                cbKategori.Items.Add(kat.getKategori());
             }
+        }
+
+        public void SparaKategori(string sparaKategori)
+        {
+            string gammalKategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+
+            foreach(var kat in KategoriLista.hamtaLista().Where(kat => kat.getKategori().Equals(gammalKategori)))
+            {
+                kat.setTitel(sparaKategori);
+            }
+            UpdatecbKategori();
+            UpdatetbKategori();
+            DAL.HanteraXML.SparaListaKategori();
         }
 
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
@@ -160,6 +173,16 @@ namespace Projekt_17_Podcast
             DAL.HanteraXML.SparaListaKategori();
         }
 
+        private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbKategori.Text = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+        }
 
+        private void btnSparaKategori_Click(object sender, EventArgs e)
+        {
+            var sparaKategori = tbKategori.Text;
+
+            SparaKategori(sparaKategori);
+        }
     }
 }

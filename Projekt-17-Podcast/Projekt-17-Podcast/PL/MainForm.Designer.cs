@@ -245,6 +245,7 @@
             this.btnSparaKategori.TabIndex = 16;
             this.btnSparaKategori.Text = "Spara";
             this.btnSparaKategori.UseVisualStyleBackColor = true;
+            this.btnSparaKategori.Click += new System.EventHandler(this.btnSparaKategori_Click);
             // 
             // btnTabortKategori
             // 
@@ -289,6 +290,7 @@
             this.lbKategorier.Name = "lbKategorier";
             this.lbKategorier.Size = new System.Drawing.Size(420, 264);
             this.lbKategorier.TabIndex = 21;
+            this.lbKategorier.SelectedIndexChanged += new System.EventHandler(this.lbKategorier_SelectedIndexChanged);
             // 
             // PodcastForm
             // 

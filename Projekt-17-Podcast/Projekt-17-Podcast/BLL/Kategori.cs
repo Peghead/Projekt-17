@@ -23,6 +23,10 @@ namespace Projekt_17_Podcast.BLL
         {
             return kategoriTitel;
         }
+        public void setTitel(string titel)
+        {
+            kategoriTitel = titel;
+        }
 
     }
 }

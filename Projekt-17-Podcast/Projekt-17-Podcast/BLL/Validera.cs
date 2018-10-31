@@ -31,7 +31,7 @@ namespace Projekt_17_Podcast.BLL
             var lista = KategoriLista.hamtaLista();
             foreach(var kat in lista)
             {
-                if(kat.kategoriTitel.Equals(kategori))
+                if(kat.getKategori().Equals(kategori))
                 {
                     return false;
                 }
