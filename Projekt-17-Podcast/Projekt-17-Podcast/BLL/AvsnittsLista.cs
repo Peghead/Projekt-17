@@ -28,5 +28,10 @@ namespace Projekt_17_Podcast.BLL
         {
             return avsnittsLista;
         }
+
+        public static void TabortAvsnitt(string pTitel)
+        {
+            avsnittsLista.RemoveAll(avs => avs.PodcastTitel.Equals(pTitel));
+        }
     }
 }

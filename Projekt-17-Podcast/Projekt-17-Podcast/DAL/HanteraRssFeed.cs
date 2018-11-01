@@ -47,7 +47,7 @@ namespace Projekt_17_Podcast.DAL
                     i++;
 
                 }
-                Podcast podcast = new Podcast(mainTitle, freq, kategori, i);
+                Podcast podcast = new Podcast(mainTitle, freq, kategori, i, url);
                 PodcastLista.laggTill(podcast);
             }
         }

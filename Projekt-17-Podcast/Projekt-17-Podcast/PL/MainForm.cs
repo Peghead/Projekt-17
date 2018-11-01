@@ -40,11 +40,9 @@ namespace Projekt_17_Podcast
         {
             var url = tbUrl.Text;   
             int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
-            int updFreqTillMinuter = updFreq * 60000;
             var kategori = cbKategori.Text;
 
             BLL.LaggTillPodcast.LaggTillNyPodcast(url, updFreq, kategori);
-            BLL.FrekvensTimer.Start(url, updFreqTillMinuter, kategori);
             //DAL.HanteraXML.SparaListaPodcast();
             //DAL.HanteraXML.SparaListaAvsnitt();
 
@@ -197,6 +195,15 @@ namespace Projekt_17_Podcast
             HanteraXML.SparaListaKategori();
             HanteraXML.SparaListaAvsnitt();
             HanteraXML.SparaListaPodcast();
+        }
+
+        private void btnTabortPodcast_Click(object sender, EventArgs e)
+        {
+            var titel = lvPodcasts.SelectedItems[0].Text;
+            PodcastLista.TabortPodcast(titel);
+            AvsnittsLista.TabortAvsnitt(titel);
+            UpdatePodcastListview();
+
         }
     }
 }

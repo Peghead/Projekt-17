@@ -25,6 +25,10 @@ namespace Projekt_17_Podcast.BLL
             return podcastLista;
         }
 
+        public static void TabortPodcast(string pTitel)
+        {
+            podcastLista.RemoveAll(pod => pod.podcastTitel.Equals(pTitel));
+        }
 
 
     }

@@ -180,6 +180,7 @@
             this.btnTabortPodcast.TabIndex = 9;
             this.btnTabortPodcast.Text = "Ta bort";
             this.btnTabortPodcast.UseVisualStyleBackColor = true;
+            this.btnTabortPodcast.Click += new System.EventHandler(this.btnTabortPodcast_Click);
             // 
             // lvAvsnitt
             // 
