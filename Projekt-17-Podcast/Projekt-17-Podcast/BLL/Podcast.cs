@@ -22,14 +22,17 @@ namespace Projekt_17_Podcast.BLL
             this.kategori = kategori;
             this.antalAvsnitt = antalavsnitt;
             this.url = url;
-
-            FrekvensTimer.Start(pTitel, url, uFreq, kategori);
+            //startaTimer(pTitel,uFreq, kategori, url);
+            
         }
         public Podcast()
         {
 
         }
-
+        private void startaTimer(string pTitel, int uFreq, string kategori, string url)
+        {
+            FrekvensTimer.Start(pTitel, url, uFreq, kategori);
+        }
 
     }
 }

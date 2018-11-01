@@ -69,6 +69,7 @@ namespace Projekt_17_Podcast.DAL
                 {
                     Podcast podcast = new Podcast(p.podcastTitel, p.uppdateringsFrekvens, p.kategori, p.antalAvsnitt, p.url);
                     PodcastLista.laggTill(podcast);
+                    FrekvensTimer.Start(p.podcastTitel, p.url, p.uppdateringsFrekvens, p.kategori);
                 });
             }
         }

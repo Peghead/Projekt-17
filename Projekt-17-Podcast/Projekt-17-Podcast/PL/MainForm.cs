@@ -32,7 +32,6 @@ namespace Projekt_17_Podcast
             UpdatePodcastListview();
             UpdatetbKategori();
             UpdatecbKategori();
-            FrekvensTimer.OnStart();
 
         }
 
@@ -50,7 +49,7 @@ namespace Projekt_17_Podcast
             UpdatePodcastListview();
         }
 
-        private void UpdatePodcastListview()
+        public void UpdatePodcastListview()
         {
             List<Podcast> lista = PodcastLista.hamtaLista();
             lvPodcasts.Items.Clear();
