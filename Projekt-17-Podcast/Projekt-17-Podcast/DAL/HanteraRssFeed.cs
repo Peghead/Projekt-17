@@ -51,5 +51,19 @@ namespace Projekt_17_Podcast.DAL
                 PodcastLista.laggTill(podcast);
             }
         }
+
+        public static int hamtaAvsnittRss(string url)
+        {
+            using (XmlReader reader = XmlReader.Create(url))
+            {
+                int i = 0;
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    i++;
+                }
+                return i;
+            }
+        }
     }
 }

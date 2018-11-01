@@ -44,7 +44,7 @@ namespace Projekt_17_Podcast
             var kategori = cbKategori.Text;
 
             BLL.LaggTillPodcast.LaggTillNyPodcast(url, updFreq, kategori);
-            BLL.FrekvensTimer.Start(updFreqTillMinuter);
+            BLL.FrekvensTimer.Start(url, updFreqTillMinuter, kategori);
             //DAL.HanteraXML.SparaListaPodcast();
             //DAL.HanteraXML.SparaListaAvsnitt();
 
@@ -70,13 +70,13 @@ namespace Projekt_17_Podcast
 
         private void UpdateAvsnittListview(string podcastTitel)
         {
-            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.podcastTitel == podcastTitel).ToList();
+            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.PodcastTitel == podcastTitel).ToList();
             lvAvsnitt.Items.Clear();
             foreach (var avsnitt in lista)
             {
                 var list = new ListViewItem(new[]
                 {
-                    avsnitt.avsnittTitel
+                    avsnitt.AvsnittTitel
                 });
                 lvAvsnitt.Items.Add(list);
             }
@@ -84,12 +84,12 @@ namespace Projekt_17_Podcast
 
         private void UpdatertbBeskrivning(string avsnitt)
         {
-            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.avsnittTitel == avsnitt).ToList();
+            List<Avsnitt> lista = AvsnittsLista.hamtaLista().Where(titel => titel.AvsnittTitel == avsnitt).ToList();
             
             foreach (var avs in lista)
             {
-                var titel = avs.avsnittTitel;
-                var beskrivning = avs.beskrivning;
+                var titel = avs.AvsnittTitel;
+                var beskrivning = avs.Beskrivning;
                 string nl = "\r\n";
                 rtbBeskrivning.Text = titel + nl + beskrivning;
             }

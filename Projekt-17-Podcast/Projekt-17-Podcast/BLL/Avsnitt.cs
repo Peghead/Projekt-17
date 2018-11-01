@@ -8,9 +8,9 @@ namespace Projekt_17_Podcast.BLL
 {
     public class Avsnitt
     {
-        public string podcastTitel;
-        public string avsnittTitel;
-        public string beskrivning;
+        private string podcastTitel;
+        private string avsnittTitel;
+        private string beskrivning;
 
         public Avsnitt(string ptitel, string atitel, string beskrivning)
         {
@@ -21,6 +21,22 @@ namespace Projekt_17_Podcast.BLL
         public Avsnitt()
         {
 
+        }
+
+        public string PodcastTitel
+        {
+            get { return podcastTitel; }
+            set { podcastTitel = value; }
+        }
+        public string AvsnittTitel
+        {
+            get { return avsnittTitel; }
+            set { avsnittTitel = value; }
+        }
+        public string Beskrivning
+        {
+            get { return beskrivning; }
+            set { beskrivning = value; }
         }
     }
 }
