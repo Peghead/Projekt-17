@@ -32,6 +32,7 @@ namespace Projekt_17_Podcast
             UpdatePodcastListview();
             UpdatetbKategori();
             UpdatecbKategori();
+            FrekvensTimer.OnStart();
 
         }
 

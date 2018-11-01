@@ -19,12 +19,11 @@ namespace Projekt_17_Podcast.BLL
         {
             podcastTitel = pTitel;
             uppdateringsFrekvens = uFreq;
-            int uFreqMinuter = uFreq * 60000; 
             this.kategori = kategori;
             this.antalAvsnitt = antalavsnitt;
             this.url = url;
 
-            FrekvensTimer.Start(pTitel, url, uFreqMinuter, kategori);
+            FrekvensTimer.Start(pTitel, url, uFreq, kategori);
         }
         public Podcast()
         {
