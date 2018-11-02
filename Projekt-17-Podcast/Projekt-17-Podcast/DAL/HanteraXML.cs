@@ -58,11 +58,11 @@ namespace Projekt_17_Podcast.DAL
                 XDocument xdoc = XDocument.Load("podcasts.txt");
                 xdoc.Descendants("Podcast").Select(p => new
                 {
-                    url = p.Element("url").Value,
-                    podcastTitel = p.Element("podcastTitel").Value,
-                    uppdateringsFrekvens = Convert.ToInt32(p.Element("uppdateringsFrekvens").Value),
-                    kategori = p.Element("kategori").Value,
-                    antalAvsnitt = Convert.ToInt32(p.Element("antalAvsnitt").Value)
+                    url = p.Element("Url").Value,
+                    podcastTitel = p.Element("PodcastTitel").Value,
+                    uppdateringsFrekvens = Convert.ToInt32(p.Element("UppdateringsFrekvens").Value),
+                    kategori = p.Element("Kategori").Value,
+                    antalAvsnitt = Convert.ToInt32(p.Element("AntalAvsnitt").Value)
                     
 
                 }).ToList().ForEach(p => 
@@ -100,7 +100,7 @@ namespace Projekt_17_Podcast.DAL
                 XDocument xdoc = XDocument.Load("kategorier.txt");
                 xdoc.Descendants("Kategori").Select(p => new
                 {
-                    kategoriTitel = p.Element("kategoriTitel").Value,
+                    kategoriTitel = p.Element("KategoriTitel").Value,
 
                 }).ToList().ForEach(p =>
                 {

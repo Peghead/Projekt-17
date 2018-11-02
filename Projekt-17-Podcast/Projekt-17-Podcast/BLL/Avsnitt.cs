@@ -6,22 +6,25 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    public class Avsnitt : IListble
+    public class Avsnitt : AvsnittsInfo
     {
         private string podcastTitel;
         private string avsnittTitel;
         private string beskrivning;
 
-        public Avsnitt(string ptitel, string atitel, string beskrivning)
+        public Avsnitt(string podcastTitel, string avsnittTitel, string beskrivning) : base(podcastTitel, avsnittTitel, beskrivning)
         {
-            podcastTitel = ptitel;
-            avsnittTitel = atitel;
+            this.podcastTitel = podcastTitel;
+            this.avsnittTitel = avsnittTitel;
             this.beskrivning = beskrivning;
+
         }
+
         public Avsnitt()
         {
 
         }
+
 
         public string PodcastTitel
         {
@@ -37,6 +40,12 @@ namespace Projekt_17_Podcast.BLL
         {
             get { return beskrivning; }
             set { beskrivning = value; }
+        }
+
+        public override string hamtaInfo()
+        {
+            string nl = "\r\n";
+            return avsnittTitel + nl + beskrivning;
         }
     }
 }

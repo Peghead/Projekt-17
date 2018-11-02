@@ -9,11 +9,11 @@ namespace Projekt_17_Podcast.BLL
 {
     public class Podcast
     {
-        public string url { get; set; }
-        public string podcastTitel { get; set; }
-        public int uppdateringsFrekvens { get; set; }
-        public string kategori { get; set; }
-        public int antalAvsnitt { get; set; }
+        private string url { get; set; }
+        private string podcastTitel { get; set; }
+        private int uppdateringsFrekvens { get; set; }
+        private string kategori { get; set; }
+        private int antalAvsnitt { get; set; }
 
         public Podcast(string pTitel, int uFreq, string kategori, int antalavsnitt, string url)
         {
@@ -29,10 +29,36 @@ namespace Projekt_17_Podcast.BLL
         {
 
         }
-        //private void startaTimer(string pTitel, int uFreq, string kategori, string url)
-        //{
-        //    FrekvensTimer.Start(pTitel, url, uFreq, kategori);
-        //}
+
+        public string PodcastTitel
+        {
+            get { return podcastTitel; }
+            set { podcastTitel = value; }
+        }
+
+        public int UppdateringsFrekvens
+        {
+            get { return uppdateringsFrekvens; }
+            set { uppdateringsFrekvens = value; }
+        }
+
+        public string Kategori
+        {
+            get { return kategori; }
+            set { kategori = value; }
+        }
+
+        public int AntalAvsnitt
+        {
+            get { return antalAvsnitt; }
+            set { antalAvsnitt = value; }
+        }
+
+        public string Url
+        {
+            get { return url; }
+            set { url = value; }
+        }
 
     }
 }

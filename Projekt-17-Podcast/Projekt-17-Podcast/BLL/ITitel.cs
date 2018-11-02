@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    interface IListble
+    interface ITitel
     {
-
+        void Tabort(string pTitel);
     }
 }

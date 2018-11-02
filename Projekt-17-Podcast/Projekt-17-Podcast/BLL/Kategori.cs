@@ -8,7 +8,7 @@ namespace Projekt_17_Podcast.BLL
 {
     public class Kategori
     {
-        public string kategoriTitel { get; set; }
+        private string kategoriTitel { get; set; }
 
         public Kategori(string kategori)
         {
@@ -19,13 +19,10 @@ namespace Projekt_17_Podcast.BLL
 
         }
 
-        public string getKategori()
+        public string KategoriTitel
         {
-            return kategoriTitel;
-        }
-        public void setTitel(string titel)
-        {
-            kategoriTitel = titel;
+            get { return kategoriTitel; }
+            set { kategoriTitel = value; }
         }
 
     }

@@ -26,7 +26,7 @@ namespace Projekt_17_Podcast.BLL
             //Hämtar avsnitt i podcast som finns i listan
             List<Podcast> lista = PodcastLista.hamtaLista();
             bool isHere = false;
-            foreach (var pod in lista.Where(p => p.podcastTitel == pTitel))
+            foreach (var pod in lista.Where(p => p.PodcastTitel == pTitel))
             {
                 isHere = true;
             }
@@ -34,10 +34,10 @@ namespace Projekt_17_Podcast.BLL
                 int antalAvsnitt = 0;
                 string podcastTitel = "";
                 int i = 0;
-                foreach (var pod in lista.Where(p => p.podcastTitel.Equals(pTitel)))
+                foreach (var pod in lista.Where(p => p.PodcastTitel.Equals(pTitel)))
                 {
-                    antalAvsnitt = pod.antalAvsnitt;
-                    podcastTitel = pod.podcastTitel;
+                    antalAvsnitt = pod.AntalAvsnitt;
+                    podcastTitel = pod.PodcastTitel;
                     i++;
                 }
 

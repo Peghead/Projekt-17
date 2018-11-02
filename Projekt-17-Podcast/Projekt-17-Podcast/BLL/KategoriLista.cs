@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    public class KategoriLista : IListble
+    public class KategoriLista
     {
         private static List<Kategori> kategoriLista { get; set; }
 

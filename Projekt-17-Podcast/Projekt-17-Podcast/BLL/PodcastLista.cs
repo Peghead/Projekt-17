@@ -8,7 +8,7 @@ namespace Projekt_17_Podcast.BLL
 {
     public class PodcastLista
     {
-        public static List<Podcast> podcastLista { get; set; }
+        private static List<Podcast> podcastLista { get; set; }
 
         public PodcastLista()
         {
@@ -27,7 +27,7 @@ namespace Projekt_17_Podcast.BLL
 
         public static void TabortPodcast(string pTitel)
         {
-            podcastLista.RemoveAll(pod => pod.podcastTitel.Equals(pTitel));
+            podcastLista.RemoveAll(pod => pod.PodcastTitel.Equals(pTitel));
         }
 
 

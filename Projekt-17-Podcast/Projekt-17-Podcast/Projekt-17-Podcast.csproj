@@ -48,9 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Avsnitt.cs" />
+    <Compile Include="BLL\AvsnittsInfo.cs" />
     <Compile Include="BLL\AvsnittsLista.cs" />
     <Compile Include="BLL\FrekvensTimer.cs" />
-    <Compile Include="BLL\IListble.cs" />
+    <Compile Include="BLL\ITitel.cs" />
     <Compile Include="BLL\KategoriLista.cs" />
     <Compile Include="BLL\LaggTillPodcast.cs" />
     <Compile Include="BLL\Kategori.cs" />

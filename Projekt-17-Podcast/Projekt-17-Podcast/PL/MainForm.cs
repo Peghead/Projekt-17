@@ -57,10 +57,10 @@ namespace Projekt_17_Podcast
             {
                 var list = new ListViewItem(new[]
                 {
-                    pod.podcastTitel,
-                    pod.kategori,
-                    pod.antalAvsnitt.ToString(),
-                    pod.uppdateringsFrekvens.ToString() + " minuter"
+                    pod.PodcastTitel,
+                    pod.Kategori,
+                    pod.AntalAvsnitt.ToString(),
+                    pod.UppdateringsFrekvens.ToString() + " minuter"
                 });
                 lvPodcasts.Items.Add(list);
             }
@@ -86,10 +86,7 @@ namespace Projekt_17_Podcast
             
             foreach (var avs in lista)
             {
-                var titel = avs.AvsnittTitel;
-                var beskrivning = avs.Beskrivning;
-                string nl = "\r\n";
-                rtbBeskrivning.Text = titel + nl + beskrivning;
+                rtbBeskrivning.Text = avs.hamtaInfo();
             }
         }
 
@@ -98,7 +95,7 @@ namespace Projekt_17_Podcast
             lbKategorier.Items.Clear();
             foreach(var kat in KategoriLista.hamtaLista())
             {
-                lbKategorier.Items.Add(kat.getKategori());
+                lbKategorier.Items.Add(kat.KategoriTitel);
             }
         }
 
@@ -107,7 +104,7 @@ namespace Projekt_17_Podcast
             cbKategori.Items.Clear();
             foreach (var kat in KategoriLista.hamtaLista())
             {
-                cbKategori.Items.Add(kat.getKategori());
+                cbKategori.Items.Add(kat.KategoriTitel);
             }
         }
 
@@ -115,9 +112,9 @@ namespace Projekt_17_Podcast
         {
             string gammalKategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
 
-            foreach(var kat in KategoriLista.hamtaLista().Where(kat => kat.getKategori().Equals(gammalKategori)))
+            foreach(var kat in KategoriLista.hamtaLista().Where(kat => kat.KategoriTitel.Equals(gammalKategori)))
             {
-                kat.setTitel(sparaKategori);
+                kat.KategoriTitel = sparaKategori;
             }
             UpdatecbKategori();
             UpdatetbKategori();
@@ -183,7 +180,7 @@ namespace Projekt_17_Podcast
             var kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
             int i;
             List<Kategori> lista = KategoriLista.hamtaLista();
-            i = lista.FindIndex(a => a.getKategori().Equals(kategori));
+            i = lista.FindIndex(a => a.KategoriTitel.Equals(kategori));
             lista.RemoveAt(i);
             UpdatecbKategori();
             UpdatetbKategori();
