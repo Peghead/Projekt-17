@@ -29,10 +29,10 @@ namespace Projekt_17_Podcast.BLL
         {
 
         }
-        private void startaTimer(string pTitel, int uFreq, string kategori, string url)
-        {
-            FrekvensTimer.Start(pTitel, url, uFreq, kategori);
-        }
+        //private void startaTimer(string pTitel, int uFreq, string kategori, string url)
+        //{
+        //    FrekvensTimer.Start(pTitel, url, uFreq, kategori);
+        //}
 
     }
 }
