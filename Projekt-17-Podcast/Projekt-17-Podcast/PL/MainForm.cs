@@ -53,7 +53,10 @@ namespace Projekt_17_Podcast
         {
             List<Podcast> lista = PodcastLista.hamtaLista();
             lvPodcasts.Items.Clear();
-            foreach(var pod in lista)
+
+            kollaLista();
+
+            foreach (var pod in lista)
             {
                 var list = new ListViewItem(new[]
                 {
@@ -121,13 +124,39 @@ namespace Projekt_17_Podcast
             //DAL.HanteraXML.SparaListaKategori();
         }
 
+        public void SparaPodcast(string pTitel)
+        {
+            foreach(var pod in PodcastLista.hamtaLista().Where(p => p.PodcastTitel.Equals(pTitel)))
+            {
+                tbUrl.Text = pod.Url;
+                cbUpdFreq.SelectedIndex = cbUpdFreq.Items.IndexOf(pod.UppdateringsFrekvens + " minuter");
+                cbKategori.SelectedIndex = cbKategori.Items.IndexOf(pod.Kategori);
+
+            }
+        }
+
+        public void UppdateraPodcast(string pTitel)
+        {
+            string url = tbUrl.Text;
+            int freq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
+            string kat = cbKategori.Text;
+
+                PodcastLista.TabortPodcast(pTitel);
+                AvsnittsLista.TabortAvsnitt(pTitel);
+                LaggTillPodcast.LaggTillNyPodcast(url, freq, kat);
+
+            UpdatePodcastListview();
+            lvAvsnitt.Clear();
+        }
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
         {
             var index = this.lvPodcasts.SelectedIndices[0];
+            btnSparaPodcast.Enabled = true;
+            btnTabortPodcast.Enabled = true;
+            string podcastTitel = this.lvPodcasts.Items[index].SubItems[0].Text;
+            SparaPodcast(podcastTitel);
 
-            string avsnittsTitel = this.lvPodcasts.Items[index].SubItems[0].Text;
-
-            UpdateAvsnittListview(avsnittsTitel);
+            UpdateAvsnittListview(podcastTitel);
 
         }
 
@@ -200,6 +229,29 @@ namespace Projekt_17_Podcast
             PodcastLista.TabortPodcast(titel);
             AvsnittsLista.TabortAvsnitt(titel);
             UpdatePodcastListview();
+
+        }
+
+        private void btnSparaPodcast_Click(object sender, EventArgs e)
+        {
+            var index = this.lvPodcasts.SelectedIndices[0];
+            string podcastTitel = this.lvPodcasts.Items[index].SubItems[0].Text;
+            if(!string.IsNullOrEmpty(podcastTitel)) { 
+                UppdateraPodcast(podcastTitel);
+            } else
+            {
+                System.Windows.Forms.MessageBox.Show("För att redigera en podcast måste podcasten som ska ändras vara markerad");
+            }
+        }
+
+        private void kollaLista()
+        {
+
+                btnSparaPodcast.Enabled = false;
+                btnTabortPodcast.Enabled = false;
+
+                btnSparaPodcast.Enabled = true;
+                btnTabortPodcast.Enabled = true;
 
         }
     }

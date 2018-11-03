@@ -10,17 +10,27 @@ namespace Projekt_17_Podcast.BLL
 {
     public class FrekvensTimer
     {
-        public static void Start(string pTitel, string url, int freq, string kategori)
+        private static int MilliTillMinut(int freqMilli)
         {
-            int uFreqMinuter = freq * 10000;
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            //aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e, pTitel, url, uFreqMinuter, kategori);
-            aTimer.Interval = uFreqMinuter;
-            aTimer.Enabled = true;
+            int freqMinut = freqMilli * 3000;
+            return freqMinut;
         }
 
-        private static void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, string url, int freq, string kategori)
+        public static async Task Start(string pTitel, string url, int freq, string kategori)
+        {
+
+              await Task.Factory.StartNew(()=> {
+                  int uFreqMinuter = MilliTillMinut(freq);
+                System.Timers.Timer aTimer = new System.Timers.Timer();
+                //aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e, pTitel, freq, url, kategori);
+                aTimer.Interval = uFreqMinuter;
+                aTimer.Enabled = true;
+              });
+        }
+
+
+        private static void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, int freq, string url, string kategori)
         {
            
             //Hämtar avsnitt i podcast som finns i listan
@@ -34,13 +44,14 @@ namespace Projekt_17_Podcast.BLL
                 int antalAvsnitt = 0;
                 string podcastTitel = "";
                 int i = 0;
+                int nyFreq = 0;
                 foreach (var pod in lista.Where(p => p.PodcastTitel.Equals(pTitel)))
                 {
                     antalAvsnitt = pod.AntalAvsnitt;
                     podcastTitel = pod.PodcastTitel;
+                    nyFreq = pod.UppdateringsFrekvens;
                     i++;
                 }
-
                 //Hämtar avsnitt i podcast URL
                 int nyaAvsnitt = HanteraRssFeed.hamtaAvsnittRss(url);
 
@@ -49,10 +60,9 @@ namespace Projekt_17_Podcast.BLL
                 {
                     Console.WriteLine(pTitel + " har inga nya avsnitt tillgängliga.");
                 }
+
                 else
                 {
-                    freq = freq / 10000;
-                    //Metod för att ta bort podcast sedan -->
                     PodcastLista.TabortPodcast(podcastTitel);
                     AvsnittsLista.TabortAvsnitt(podcastTitel);
                     LaggTillPodcast.LaggTillNyPodcast(url, freq, kategori);

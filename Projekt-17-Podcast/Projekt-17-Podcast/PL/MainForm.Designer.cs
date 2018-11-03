@@ -103,7 +103,7 @@
             this.cbUpdFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUpdFreq.FormattingEnabled = true;
             this.cbUpdFreq.Items.AddRange(new object[] {
-            "1 minut",
+            "2 minuter",
             "5 minuter",
             "10 minuter",
             "30 minuter"});
@@ -170,6 +170,7 @@
             this.btnSparaPodcast.TabIndex = 8;
             this.btnSparaPodcast.Text = "Spara";
             this.btnSparaPodcast.UseVisualStyleBackColor = true;
+            this.btnSparaPodcast.Click += new System.EventHandler(this.btnSparaPodcast_Click);
             // 
             // btnTabortPodcast
             // 
