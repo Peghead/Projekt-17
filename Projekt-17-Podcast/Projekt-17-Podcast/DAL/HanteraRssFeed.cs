@@ -31,6 +31,7 @@ namespace Projekt_17_Podcast.DAL
         //}
         public static void hamtaRssInfo(string url, int freq, string kategori)
         {
+
             using (XmlReader reader = XmlReader.Create(url))
             {
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
@@ -48,10 +49,7 @@ namespace Projekt_17_Podcast.DAL
                 }
                 Podcast podcast = new Podcast(mainTitle, freq, kategori, i, url);
                 PodcastLista.laggTill(podcast);
-                Task.Factory.StartNew(() =>
-                {
-                    FrekvensTimer.Start(mainTitle, url, freq, kategori);
-                });
+                FrekvensTimer.Start(mainTitle, url, freq, kategori);
 
             }
         }

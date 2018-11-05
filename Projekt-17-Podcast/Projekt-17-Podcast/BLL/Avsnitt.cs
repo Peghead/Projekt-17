@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    public class Avsnitt : AvsnittsInfo
+    public class Avsnitt : AvsnittsInfo, ITitel
     {
         private string podcastTitel;
         private string avsnittTitel;

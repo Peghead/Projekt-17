@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
-    public class Podcast
+    public class Podcast : ITitel
     {
         private string url { get; set; }
         private string podcastTitel { get; set; }

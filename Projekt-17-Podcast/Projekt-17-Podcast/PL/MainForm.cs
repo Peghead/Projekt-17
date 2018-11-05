@@ -71,6 +71,25 @@ namespace Projekt_17_Podcast
                 lvPodcasts.Items.Add(list);
             }
         }
+        public void UpdatePodcastListviewKategori(string kategori)
+        {
+            List<Podcast> lista = PodcastLista.hamtaLista();
+            lvPodcasts.Items.Clear();
+
+            kollaLista();
+
+            foreach (var pod in lista.Where(p => p.Kategori == kategori))
+            {
+                var list = new ListViewItem(new[]
+                {
+                    pod.PodcastTitel,
+                    pod.Kategori,
+                    pod.AntalAvsnitt.ToString(),
+                    pod.UppdateringsFrekvens.ToString() + " minuter"
+                });
+                lvPodcasts.Items.Add(list);
+            }
+        }
 
         private void UpdateAvsnittListview(string podcastTitel)
         {
@@ -172,10 +191,7 @@ namespace Projekt_17_Podcast
         private void lvAvsnitt_ItemActivate(object sender, EventArgs e)
         {
             var index = this.lvAvsnitt.SelectedIndices[0];
-
             string avsnittsTitel = this.lvAvsnitt.Items[index].SubItems[0].Text;
-
-            Console.WriteLine(avsnittsTitel);
             UpdatertbBeskrivning(avsnittsTitel);
         }
 
@@ -202,7 +218,10 @@ namespace Projekt_17_Podcast
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbKategori.Text = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+            string kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+            tbKategori.Text = kategori;
+            UpdatePodcastListviewKategori(kategori);
+
         }
 
         private void btnSparaKategori_Click(object sender, EventArgs e)
@@ -317,5 +336,9 @@ namespace Projekt_17_Podcast
             return false;
         }
 
+        private void lbKategorier_Leave(object sender, EventArgs e)
+        {
+            UpdatePodcastListview();
+        }
     }
 }

@@ -293,6 +293,7 @@
             this.lbKategorier.Size = new System.Drawing.Size(420, 264);
             this.lbKategorier.TabIndex = 21;
             this.lbKategorier.SelectedIndexChanged += new System.EventHandler(this.lbKategorier_SelectedIndexChanged);
+            this.lbKategorier.Leave += new System.EventHandler(this.lbKategorier_Leave);
             // 
             // PodcastForm
             // 

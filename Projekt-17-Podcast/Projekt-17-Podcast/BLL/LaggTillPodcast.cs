@@ -13,8 +13,9 @@ namespace Projekt_17_Podcast.BLL
         {
             if (Validera.KollaRSS(url))
             {
-                HanteraRssFeed.hamtaRssInfo(url, freq, kategori);
+                    HanteraRssFeed.hamtaRssInfo(url, freq, kategori);
             }
+                
         }
     }
 }
