@@ -21,23 +21,26 @@ namespace Projekt_17_Podcast.DAL
             {
                 File.Delete("podcasts.txt");
             }
-            Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\podcasts.txt");
-            XmlSerializer xmlSer = new XmlSerializer(typeof(List<Podcast>));
-            xmlSer.Serialize(stream, PodcastLista.hamtaLista());
-            stream.Close();
+            using (Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\podcasts.txt"))
+            { 
+                XmlSerializer xmlSer = new XmlSerializer(typeof(List<Podcast>));
+                xmlSer.Serialize(stream, PodcastLista.hamtaLista());
+                stream.Close();
+            }
         }
-
+        
         public static void SparaListaAvsnitt()
         {
             if (File.Exists("avsnitt.txt"))
             {
                 File.Delete("avsnitt.txt");
             }
-            Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\avsnitt.txt");
-            XmlSerializer xmlSer = new XmlSerializer(typeof(List<Avsnitt>));
-            xmlSer.Serialize(stream, AvsnittsLista.hamtaLista());
-            stream.Close();
-            
+            using (Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\avsnitt.txt"))
+            {
+                XmlSerializer xmlSer = new XmlSerializer(typeof(List<Avsnitt>));
+                xmlSer.Serialize(stream, AvsnittsLista.hamtaLista());
+                stream.Close();
+            }
         }
 
         public static void SparaListaKategori()
@@ -46,15 +49,17 @@ namespace Projekt_17_Podcast.DAL
             {
                 File.Delete("kategorier.txt");
             }
-            Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\kategorier.txt");
-            XmlSerializer xmlSer = new XmlSerializer(typeof(List<Kategori>));
-            xmlSer.Serialize(stream, KategoriLista.hamtaLista());
-            stream.Close();
+            using (Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\kategorier.txt"))
+            {
+                XmlSerializer xmlSer = new XmlSerializer(typeof(List<Kategori>));
+                xmlSer.Serialize(stream, KategoriLista.hamtaLista());
+                stream.Close();
+            }
         }
 
         public static void SkapaListaPodcast()
         {
-            if(File.Exists("podcasts.txt")) { 
+            if(File.Exists("podcasts.txt")) {
                 XDocument xdoc = XDocument.Load("podcasts.txt");
                 xdoc.Descendants("Podcast").Select(p => new
                 {
@@ -63,15 +68,11 @@ namespace Projekt_17_Podcast.DAL
                     uppdateringsFrekvens = Convert.ToInt32(p.Element("UppdateringsFrekvens").Value),
                     kategori = p.Element("Kategori").Value,
                     antalAvsnitt = Convert.ToInt32(p.Element("AntalAvsnitt").Value)
-                    
-
                 }).ToList().ForEach(p => 
                 {
                     Podcast podcast = new Podcast(p.podcastTitel, p.uppdateringsFrekvens, p.kategori, p.antalAvsnitt, p.url);
                     PodcastLista.laggTill(podcast);
-                    //Task.Run(() => {
-                        FrekvensTimer.Start(p.podcastTitel, p.url, p.uppdateringsFrekvens, p.kategori);
-                    //});
+                    FrekvensTimer.Start(p.podcastTitel, p.url, p.uppdateringsFrekvens, p.kategori);
                 });
             }
         }

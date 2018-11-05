@@ -25,14 +25,28 @@ namespace Projekt_17_Podcast
             new AvsnittsLista();
             new KategoriLista();
 
-            DAL.HanteraXML.SkapaListaPodcast();
-            DAL.HanteraXML.SkapaListaAvsnitt();
-            DAL.HanteraXML.SkapaListaKategori();
+            //UpdateListView test = new UpdateListView();
+            //test.laddaForm(GetForm());
+            //test.UpdatePodcastListview();
 
+            Gateway.SkapaListor();
+
+            //test.UpdatePodcastListview();
             UpdatePodcastListview();
+
             UpdatetbKategori();
             UpdatecbKategori();
 
+        }
+
+        public Action GetForm()
+        {
+            return UpdatePodcastListview;
+        }
+
+        public ListView GetLvPodcast()
+        {
+            return lvPodcasts;
         }
 
 
@@ -44,9 +58,7 @@ namespace Projekt_17_Podcast
             int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             var kategori = cbKategori.Text;
 
-            BLL.LaggTillPodcast.LaggTillNyPodcast(url, updFreq, kategori);
-            //DAL.HanteraXML.SparaListaPodcast();
-            //DAL.HanteraXML.SparaListaAvsnitt();
+            BLL.Gateway.LaggTillNyPodcast(url, updFreq, kategori);
 
             UpdatePodcastListview();
             }
@@ -56,8 +68,6 @@ namespace Projekt_17_Podcast
         {
             List<Podcast> lista = PodcastLista.hamtaLista();
             lvPodcasts.Items.Clear();
-
-            kollaLista();
 
             foreach (var pod in lista)
             {
@@ -75,8 +85,6 @@ namespace Projekt_17_Podcast
         {
             List<Podcast> lista = PodcastLista.hamtaLista();
             lvPodcasts.Items.Clear();
-
-            kollaLista();
 
             foreach (var pod in lista.Where(p => p.Kategori == kategori))
             {
@@ -149,7 +157,6 @@ namespace Projekt_17_Podcast
             }
             UpdatecbKategori();
             UpdatetbKategori();
-            //DAL.HanteraXML.SparaListaKategori();
         }
 
         public void SparaPodcast(string pTitel)
@@ -169,9 +176,9 @@ namespace Projekt_17_Podcast
             int freq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             string kat = cbKategori.Text;
 
-                PodcastLista.TabortPodcast(pTitel);
-                AvsnittsLista.TabortAvsnitt(pTitel);
-                LaggTillPodcast.LaggTillNyPodcast(url, freq, kat);
+            PodcastLista.TabortPodcast(pTitel);
+            AvsnittsLista.TabortAvsnitt(pTitel);
+            Gateway.LaggTillNyPodcast(url, freq, kat);
 
             UpdatePodcastListview();
             lvAvsnitt.Items.Clear();
@@ -213,7 +220,6 @@ namespace Projekt_17_Podcast
             KategoriLista.laggTill(kategori);
             UpdatecbKategori();
             UpdatetbKategori();
-            //DAL.HanteraXML.SparaListaKategori();
         }
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
@@ -228,9 +234,6 @@ namespace Projekt_17_Podcast
         {
             var sparaKategori = tbKategori.Text;
             SparaKategori(sparaKategori);
-            //HanteraXML.SparaListaKategori();
-
-
         }
 
         private void btnTabortKategori_Click(object sender, EventArgs e)
@@ -249,16 +252,11 @@ namespace Projekt_17_Podcast
             {
                 System.Windows.Forms.MessageBox.Show("För att ta bort en kategori måste kategorin som ska tas bort vara markerad");
             }
-            
-
-            //HanteraXML.SparaListaKategori();
         }
 
         private void PodcastForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            HanteraXML.SparaListaKategori();
-            HanteraXML.SparaListaAvsnitt();
-            HanteraXML.SparaListaPodcast();
+            Gateway.SparaListor();
         }
 
         private void btnTabortPodcast_Click(object sender, EventArgs e)
@@ -290,17 +288,9 @@ namespace Projekt_17_Podcast
             }
         }
 
-
-
-        private void kollaLista()
+        private void lbKategorier_Leave(object sender, EventArgs e)
         {
-
-                btnSparaPodcast.Enabled = false;
-                btnTabortPodcast.Enabled = false;
-
-                btnSparaPodcast.Enabled = true;
-                btnTabortPodcast.Enabled = true;
-
+            UpdatePodcastListview();
         }
 
         private bool kollaUrl()
@@ -334,11 +324,6 @@ namespace Projekt_17_Podcast
             }
             System.Windows.Forms.MessageBox.Show("Var vänlig välj en kategori");
             return false;
-        }
-
-        private void lbKategorier_Leave(object sender, EventArgs e)
-        {
-            UpdatePodcastListview();
         }
     }
 }

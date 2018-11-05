@@ -53,10 +53,13 @@
     <Compile Include="BLL\FrekvensTimer.cs" />
     <Compile Include="BLL\ITitel.cs" />
     <Compile Include="BLL\KategoriLista.cs" />
-    <Compile Include="BLL\LaggTillPodcast.cs" />
+    <Compile Include="BLL\Gateway.cs" />
     <Compile Include="BLL\Kategori.cs" />
     <Compile Include="BLL\Podcast.cs" />
     <Compile Include="BLL\PodcastLista.cs" />
+    <Compile Include="BLL\UpdateListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BLL\Validera.cs" />
     <Compile Include="DAL\HanteraRssFeed.cs" />
     <Compile Include="DAL\HanteraXML.cs" />

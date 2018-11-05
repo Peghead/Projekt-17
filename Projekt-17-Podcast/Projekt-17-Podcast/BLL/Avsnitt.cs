@@ -17,14 +17,12 @@ namespace Projekt_17_Podcast.BLL
             this.podcastTitel = podcastTitel;
             this.avsnittTitel = avsnittTitel;
             this.beskrivning = beskrivning;
-
         }
 
         public Avsnitt()
         {
 
         }
-
 
         public string PodcastTitel
         {

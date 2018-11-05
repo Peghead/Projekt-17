@@ -22,7 +22,6 @@ namespace Projekt_17_Podcast.BLL
             this.kategori = kategori;
             this.antalAvsnitt = antalavsnitt;
             this.url = url;
-            //startaTimer(pTitel,uFreq, kategori, url);
             
         }
         public Podcast()

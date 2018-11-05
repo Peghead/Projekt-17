@@ -19,7 +19,6 @@ namespace Projekt_17_Podcast.BLL
 
         public static void Start(string pTitel, string url, int freq, string kategori)
         {
-
             int uFreqMinuter = MilliTillMinut(freq);
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e, pTitel, freq, url, kategori);
@@ -30,8 +29,6 @@ namespace Projekt_17_Podcast.BLL
 
         private static async void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, int freq, string url, string kategori)
         {
-           
-            //Hämtar avsnitt i podcast som finns i listan
             List<Podcast> lista = PodcastLista.hamtaLista();
             bool isHere = false;
             foreach (var pod in lista.Where(p => p.PodcastTitel == pTitel))
@@ -50,7 +47,6 @@ namespace Projekt_17_Podcast.BLL
                     nyFreq = pod.UppdateringsFrekvens;
                     i++;
                 }
-                //Hämtar avsnitt i podcast URL
                 int nyaAvsnitt = await HanteraRssFeed.hamtaAvsnittRss(url);
 
                 Console.WriteLine("Jämför listorna.");
@@ -63,12 +59,13 @@ namespace Projekt_17_Podcast.BLL
                 {
                     PodcastLista.TabortPodcast(podcastTitel);
                     AvsnittsLista.TabortAvsnitt(podcastTitel);
-                    LaggTillPodcast.LaggTillNyPodcast(url, freq, kategori);
-                
+                    Gateway.LaggTillNyPodcast(url, freq, kategori);
+                    //UpdateListView.laddaForm();
                     Console.WriteLine("Listan har uppdaterats.");
                 }
             }
         }
+
 
     }
 }
