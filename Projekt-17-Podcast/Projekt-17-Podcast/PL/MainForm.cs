@@ -38,7 +38,9 @@ namespace Projekt_17_Podcast
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-            var url = tbUrl.Text;   
+
+            var url = tbUrl.Text;
+            if (Validera.kollaOmUrlRedanFinns(url) && kollaUrl() && kollaUppdateringsfrekvens() && kollaKategori()) { 
             int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             var kategori = cbKategori.Text;
 
@@ -47,6 +49,7 @@ namespace Projekt_17_Podcast
             //DAL.HanteraXML.SparaListaAvsnitt();
 
             UpdatePodcastListview();
+            }
         }
 
         public void UpdatePodcastListview()
@@ -115,6 +118,12 @@ namespace Projekt_17_Podcast
         {
             string gammalKategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
 
+            if(string.IsNullOrEmpty(gammalKategori))
+            {
+                System.Windows.Forms.MessageBox.Show("För att redigera en kategori måste kategorin som ska ändras vara markerad");
+                return;
+            }
+
             foreach(var kat in KategoriLista.hamtaLista().Where(kat => kat.KategoriTitel.Equals(gammalKategori)))
             {
                 kat.KategoriTitel = sparaKategori;
@@ -146,7 +155,7 @@ namespace Projekt_17_Podcast
                 LaggTillPodcast.LaggTillNyPodcast(url, freq, kat);
 
             UpdatePodcastListview();
-            lvAvsnitt.Clear();
+            lvAvsnitt.Items.Clear();
         }
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
         {
@@ -199,20 +208,30 @@ namespace Projekt_17_Podcast
         private void btnSparaKategori_Click(object sender, EventArgs e)
         {
             var sparaKategori = tbKategori.Text;
-
             SparaKategori(sparaKategori);
             //HanteraXML.SparaListaKategori();
+
+
         }
 
         private void btnTabortKategori_Click(object sender, EventArgs e)
         {
-            var kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
-            int i;
-            List<Kategori> lista = KategoriLista.hamtaLista();
-            i = lista.FindIndex(a => a.KategoriTitel.Equals(kategori));
-            lista.RemoveAt(i);
-            UpdatecbKategori();
-            UpdatetbKategori();
+
+            try
+            {
+                var kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);
+                int i;
+                List<Kategori> lista = KategoriLista.hamtaLista();
+                i = lista.FindIndex(a => a.KategoriTitel.Equals(kategori));
+                lista.RemoveAt(i);
+                UpdatecbKategori();
+                UpdatetbKategori();
+            } catch(Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("För att ta bort en kategori måste kategorin som ska tas bort vara markerad");
+            }
+            
+
             //HanteraXML.SparaListaKategori();
         }
 
@@ -225,24 +244,34 @@ namespace Projekt_17_Podcast
 
         private void btnTabortPodcast_Click(object sender, EventArgs e)
         {
-            var titel = lvPodcasts.SelectedItems[0].Text;
-            PodcastLista.TabortPodcast(titel);
-            AvsnittsLista.TabortAvsnitt(titel);
-            UpdatePodcastListview();
-
+            var titel = "";
+            try
+            {
+                titel = lvPodcasts.SelectedItems[0].Text;
+                PodcastLista.TabortPodcast(titel);
+                AvsnittsLista.TabortAvsnitt(titel);
+                UpdatePodcastListview();
+            } catch(Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("För att ta bort en podcast måste podcasten som ska tas bort vara markerad");
+            }
         }
 
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
-            var index = this.lvPodcasts.SelectedIndices[0];
-            string podcastTitel = this.lvPodcasts.Items[index].SubItems[0].Text;
-            if(!string.IsNullOrEmpty(podcastTitel)) { 
-                UppdateraPodcast(podcastTitel);
-            } else
+            string podcastTitel = "";
+            try
+            {
+                var index = lvPodcasts.SelectedIndices[0];
+                podcastTitel = lvPodcasts.Items[index].SubItems[0].Text;
+                UppdateraPodcast(podcastTitel); 
+            } catch(Exception)
             {
                 System.Windows.Forms.MessageBox.Show("För att redigera en podcast måste podcasten som ska ändras vara markerad");
             }
         }
+
+
 
         private void kollaLista()
         {
@@ -254,5 +283,39 @@ namespace Projekt_17_Podcast
                 btnTabortPodcast.Enabled = true;
 
         }
+
+        private bool kollaUrl()
+        {
+            string url = tbUrl.Text;
+            if(!string.IsNullOrEmpty(url))
+            {
+                return true;
+            }
+            System.Windows.Forms.MessageBox.Show("Url-fältet får ej vara tomt");
+            return false;
+        }
+
+        private bool kollaUppdateringsfrekvens()
+        {
+            string freq = cbUpdFreq.Text;
+            if (!string.IsNullOrEmpty(freq))
+            {
+                return true;
+            }
+            System.Windows.Forms.MessageBox.Show("Var vänlig välj en uppdateringsfrekvens");
+            return false;
+        }
+
+        private bool kollaKategori()
+        {
+            string kategori = cbKategori.Text;
+            if (!string.IsNullOrEmpty(kategori))
+            {
+                return true;
+            }
+            System.Windows.Forms.MessageBox.Show("Var vänlig välj en kategori");
+            return false;
+        }
+
     }
 }

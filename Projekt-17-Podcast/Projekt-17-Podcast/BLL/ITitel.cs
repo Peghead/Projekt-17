@@ -8,6 +8,6 @@ namespace Projekt_17_Podcast.BLL
 {
     interface ITitel
     {
-        void Tabort(string pTitel);
+        
     }
 }

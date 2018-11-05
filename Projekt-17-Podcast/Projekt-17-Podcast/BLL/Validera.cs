@@ -21,7 +21,7 @@ namespace Projekt_17_Podcast.BLL
 
             } catch(Exception)
             {
-                Console.WriteLine("Länken va ej giltig");
+                System.Windows.Forms.MessageBox.Show("Länken är ej giltig");
                 return false;
             }
         }
@@ -35,6 +35,17 @@ namespace Projekt_17_Podcast.BLL
                 {
                     return false;
                 }
+            }
+            return true;
+        }
+
+        public static bool kollaOmUrlRedanFinns(string url)
+        {
+            List<Podcast> lista = PodcastLista.hamtaLista();
+            foreach (var pod in lista.Where(p => p.Url == url))
+            {
+                System.Windows.Forms.MessageBox.Show("Denna podcasten finns redan");
+                return false;
             }
             return true;
         }

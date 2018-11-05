@@ -29,7 +29,6 @@ namespace Projekt_17_Podcast.DAL
         //        }
         //    }
         //}
-
         public static void hamtaRssInfo(string url, int freq, string kategori)
         {
             using (XmlReader reader = XmlReader.Create(url))
@@ -49,11 +48,15 @@ namespace Projekt_17_Podcast.DAL
                 }
                 Podcast podcast = new Podcast(mainTitle, freq, kategori, i, url);
                 PodcastLista.laggTill(podcast);
-                FrekvensTimer.Start(mainTitle, url, freq, kategori);
+                Task.Factory.StartNew(() =>
+                {
+                    FrekvensTimer.Start(mainTitle, url, freq, kategori);
+                });
+
             }
         }
 
-        public static int hamtaAvsnittRss(string url)
+        public static async Task<int> hamtaAvsnittRss(string url)
         {
             using (XmlReader reader = XmlReader.Create(url))
             {

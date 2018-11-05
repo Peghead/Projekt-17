@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -16,21 +17,18 @@ namespace Projekt_17_Podcast.BLL
             return freqMinut;
         }
 
-        public static async Task Start(string pTitel, string url, int freq, string kategori)
+        public static void Start(string pTitel, string url, int freq, string kategori)
         {
 
-              await Task.Factory.StartNew(()=> {
-                  int uFreqMinuter = MilliTillMinut(freq);
-                System.Timers.Timer aTimer = new System.Timers.Timer();
-                //aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e, pTitel, freq, url, kategori);
-                aTimer.Interval = uFreqMinuter;
-                aTimer.Enabled = true;
-              });
+            int uFreqMinuter = MilliTillMinut(freq);
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e, pTitel, freq, url, kategori);
+            aTimer.Interval = uFreqMinuter;
+            aTimer.Enabled = true;
         }
 
 
-        private static void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, int freq, string url, string kategori)
+        private static async void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, int freq, string url, string kategori)
         {
            
             //Hämtar avsnitt i podcast som finns i listan
@@ -53,7 +51,7 @@ namespace Projekt_17_Podcast.BLL
                     i++;
                 }
                 //Hämtar avsnitt i podcast URL
-                int nyaAvsnitt = HanteraRssFeed.hamtaAvsnittRss(url);
+                int nyaAvsnitt = await HanteraRssFeed.hamtaAvsnittRss(url);
 
                 Console.WriteLine("Jämför listorna.");
                 if (nyaAvsnitt == antalAvsnitt)
