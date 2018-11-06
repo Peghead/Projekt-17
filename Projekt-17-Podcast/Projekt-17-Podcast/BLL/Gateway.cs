@@ -1,9 +1,4 @@
 ﻿using Projekt_17_Podcast.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projekt_17_Podcast.BLL
 {
@@ -15,7 +10,6 @@ namespace Projekt_17_Podcast.BLL
             {
                     HanteraRssFeed.hamtaRssInfo(url, freq, kategori);
             }
-                
         }
 
         public static void SkapaListor()

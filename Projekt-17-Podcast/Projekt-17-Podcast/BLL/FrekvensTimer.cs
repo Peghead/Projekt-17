@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace Projekt_17_Podcast.BLL
@@ -13,7 +10,7 @@ namespace Projekt_17_Podcast.BLL
     {
         private static int MilliTillMinut(int freqMilli)
         {
-            int freqMinut = freqMilli * 3000;
+            int freqMinut = freqMilli * 60000;
             return freqMinut;
         }
 
@@ -25,7 +22,6 @@ namespace Projekt_17_Podcast.BLL
             aTimer.Interval = uFreqMinuter;
             aTimer.Enabled = true;
         }
-
 
         private static async void OnTimedEvent(object source, ElapsedEventArgs e, string pTitel, int freq, string url, string kategori)
         {
@@ -49,7 +45,7 @@ namespace Projekt_17_Podcast.BLL
                 }
                 int nyaAvsnitt = await HanteraRssFeed.hamtaAvsnittRss(url);
 
-                Console.WriteLine("Jämför listorna.");
+                Console.WriteLine("Söker efter nya avsnitt.");
                 if (nyaAvsnitt == antalAvsnitt)
                 {
                     Console.WriteLine(pTitel + " har inga nya avsnitt tillgängliga.");
@@ -60,12 +56,9 @@ namespace Projekt_17_Podcast.BLL
                     PodcastLista.TabortPodcast(podcastTitel);
                     AvsnittsLista.TabortAvsnitt(podcastTitel);
                     Gateway.LaggTillNyPodcast(url, freq, kategori);
-                    //UpdateListView.laddaForm();
-                    Console.WriteLine("Listan har uppdaterats.");
+                    Console.WriteLine("Nya avsnitt hittades, Podcasten har uppdaterats.");
                 }
             }
         }
-
-
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projekt_17_Podcast.BLL
+﻿namespace Projekt_17_Podcast.BLL
 {
     public class Kategori
     {
@@ -14,6 +8,7 @@ namespace Projekt_17_Podcast.BLL
         {
             kategoriTitel = kategori;
         }
+
         public Kategori()
         {
 
@@ -24,6 +19,5 @@ namespace Projekt_17_Podcast.BLL
             get { return kategoriTitel; }
             set { kategoriTitel = value; }
         }
-
     }
 }

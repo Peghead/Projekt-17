@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Projekt_17_Podcast.BLL;
-using Projekt_17_Podcast.DAL;
 
 namespace Projekt_17_Podcast
 {
@@ -25,18 +20,11 @@ namespace Projekt_17_Podcast
             new AvsnittsLista();
             new KategoriLista();
 
-            //UpdateListView test = new UpdateListView();
-            //test.laddaForm(GetForm());
-            //test.UpdatePodcastListview();
-
             Gateway.SkapaListor();
 
-            //test.UpdatePodcastListview();
             UpdatePodcastListview();
-
             UpdatetbKategori();
             UpdatecbKategori();
-
         }
 
         public Action GetForm()
@@ -52,14 +40,12 @@ namespace Projekt_17_Podcast
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-
             var url = tbUrl.Text;
             if (Validera.kollaOmUrlRedanFinns(url) && kollaUrl() && kollaUppdateringsfrekvens() && kollaKategori()) { 
             int updFreq = Convert.ToInt32(cbUpdFreq.Text.Split(' ')[0]);
             var kategori = cbKategori.Text;
 
             BLL.Gateway.LaggTillNyPodcast(url, updFreq, kategori);
-
             UpdatePodcastListview();
             }
         }
@@ -81,6 +67,7 @@ namespace Projekt_17_Podcast
                 lvPodcasts.Items.Add(list);
             }
         }
+
         public void UpdatePodcastListviewKategori(string kategori)
         {
             List<Podcast> lista = PodcastLista.hamtaLista();
@@ -183,6 +170,7 @@ namespace Projekt_17_Podcast
             UpdatePodcastListview();
             lvAvsnitt.Items.Clear();
         }
+
         private void lvPodcasts_ItemActivate(object sender, EventArgs e)
         {
             var index = this.lvPodcasts.SelectedIndices[0];
@@ -238,7 +226,6 @@ namespace Projekt_17_Podcast
 
         private void btnTabortKategori_Click(object sender, EventArgs e)
         {
-
             try
             {
                 var kategori = lbKategorier.GetItemText(lbKategorier.SelectedItem);

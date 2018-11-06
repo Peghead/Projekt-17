@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.ServiceModel.Syndication;
@@ -27,7 +24,6 @@ namespace Projekt_17_Podcast.DAL
 
         public static void hamtaRssInfo(string url, int freq, string kategori)
         {
-
             using (XmlReader reader = XmlReader.Create(url))
             {
                 try { 
@@ -42,7 +38,6 @@ namespace Projekt_17_Podcast.DAL
                         Avsnitt avsnitt = new Avsnitt(mainTitle, title, summary);
                         AvsnittsLista.laggTill(avsnitt);
                         i++;
-
                     }
                     Podcast podcast = new Podcast(mainTitle, freq, kategori, i, url);
                     PodcastLista.laggTill(podcast);
