@@ -27,17 +27,6 @@ namespace Projekt_17_Podcast
             UpdatecbKategori();
         }
 
-        public Action GetForm()
-        {
-            return UpdatePodcastListview;
-        }
-
-        public ListView GetLvPodcast()
-        {
-            return lvPodcasts;
-        }
-
-
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
             var url = tbUrl.Text;
