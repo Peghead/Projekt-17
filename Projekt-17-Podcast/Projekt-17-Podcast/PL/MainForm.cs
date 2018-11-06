@@ -7,8 +7,10 @@ using Projekt_17_Podcast.BLL;
 
 namespace Projekt_17_Podcast
 {
+
     public partial class PodcastForm : Form
     {
+
         public PodcastForm()
         {
             InitializeComponent();
@@ -25,6 +27,17 @@ namespace Projekt_17_Podcast
             UpdatePodcastListview();
             UpdatetbKategori();
             UpdatecbKategori();
+            FrekvensTimer.CatchPodcastUpdate += new EventHandler(FangaEvent);
+        }
+
+        void FangaEvent(object sender, EventArgs e)
+        {
+            if(this.InvokeRequired) { 
+            this.Invoke(new Action(() => UpdatePodcastListview()));
+            } else
+            {
+                UpdatePodcastListview();
+            }
         }
 
         private void btnNyPodcast_Click(object sender, EventArgs e)

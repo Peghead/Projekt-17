@@ -3,14 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
 
 namespace Projekt_17_Podcast.BLL
 {
     public class FrekvensTimer
     {
+        public static event EventHandler CatchPodcastUpdate;
+
         private static int MilliTillMinut(int freqMilli)
         {
-            int freqMinut = freqMilli * 60000;
+            int freqMinut = freqMilli * 1000;
             return freqMinut;
         }
 
@@ -56,6 +60,7 @@ namespace Projekt_17_Podcast.BLL
                     PodcastLista.TabortPodcast(podcastTitel);
                     AvsnittsLista.TabortAvsnitt(podcastTitel);
                     Gateway.LaggTillNyPodcast(url, freq, kategori);
+                    CatchPodcastUpdate(source, e);
                     Console.WriteLine("Nya avsnitt hittades, Podcasten har uppdaterats.");
                 }
             }
